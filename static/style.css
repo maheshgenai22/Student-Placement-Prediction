@@ -1,0 +1,5528 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --purple-50: #faf7ff;
+    --purple-100: #f3e8ff;
+    --purple-200: #e9d5ff;
+    --purple-300: #d8b4fe;
+    --purple-400: #c084fc;
+    --purple-500: #a855f7;
+    --purple-600: #9333ea;
+    --purple-700: #7e22ce;
+    --purple-800: #6b21a8;
+    --purple-900: #581c87;
+
+    --primary: #7c3aed;
+    --primary-dark: #5b21b6;
+    --primary-light: #8b5cf6;
+    --accent: #c026d3;
+    --accent-soft: #f0abfc;
+
+    --white: #ffffff;
+    --surface: #ffffff;
+    --surface-soft: #fcfaff;
+    --surface-purple: #f7f2ff;
+
+    --text: #21152f;
+    --text-secondary: #62576d;
+    --text-muted: #887d92;
+
+    --border: rgba(124, 58, 237, 0.13);
+    --border-strong: rgba(124, 58, 237, 0.25);
+
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --shadow-xs: 0 4px 15px rgba(91, 33, 182, 0.05);
+    --shadow-sm: 0 10px 30px rgba(91, 33, 182, 0.08);
+    --shadow-md: 0 20px 55px rgba(91, 33, 182, 0.11);
+    --shadow-lg: 0 30px 85px rgba(91, 33, 182, 0.16);
+    --shadow-purple: 0 18px 45px rgba(124, 58, 237, 0.25);
+
+    --radius-xs: 8px;
+    --radius-sm: 12px;
+    --radius-md: 17px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-2xl: 40px;
+
+    --container: 1240px;
+    --transition: 0.28s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 5% 4%, rgba(168, 85, 247, 0.11), transparent 25%),
+        radial-gradient(circle at 95% 10%, rgba(124, 58, 237, 0.08), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #fcfaff 46%, #f8f3ff 100%);
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image:
+        linear-gradient(rgba(124, 58, 237, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.025) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -6;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 30%, rgba(91, 33, 182, 0.025) 100%);
+}
+
+::selection {
+    color: #ffffff;
+    background: var(--primary);
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f4effa;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+input,
+select {
+    outline: none;
+}
+
+.page-glow {
+    position: fixed;
+    z-index: -2;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.glow-one {
+    top: 12%;
+    left: -180px;
+    width: 430px;
+    height: 430px;
+    background: rgba(168, 85, 247, 0.08);
+}
+
+.glow-two {
+    top: 45%;
+    right: -200px;
+    width: 480px;
+    height: 480px;
+    background: rgba(124, 58, 237, 0.07);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.09);
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    animation: navbarDrop 0.7s ease both;
+}
+
+.nav-container {
+    width: min(var(--container), 90%);
+    min-height: 58px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: #ffffff;
+    background:
+        linear-gradient(135deg, #5b21b6, #7c3aed 52%, #c026d3);
+    box-shadow:
+        0 12px 30px rgba(124, 58, 237, 0.25),
+        inset 0 1px 0 rgba(255,255,255,.25);
+    transform: rotate(-2deg);
+}
+
+.brand-icon span {
+    font-size: 21px;
+    transform: rotate(2deg);
+}
+
+.brand h2 {
+    color: var(--text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 20px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+.brand h2 span {
+    color: var(--primary);
+}
+
+.brand small {
+    display: block;
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 8px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 31px;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 7px 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    transition: color var(--transition);
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.model-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 0 13px;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 99px;
+    color: var(--primary-dark);
+    background: rgba(247, 242, 255, 0.86);
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.model-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.10);
+    animation: onlinePulse 1.8s ease-in-out infinite;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 710px;
+    padding: 82px 0 75px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -230px;
+    right: -160px;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.08);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -300px;
+    left: -190px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: rgba(192, 38, 211, 0.055);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    width: min(var(--container), 90%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.04fr 0.96fr;
+    align-items: center;
+    gap: 72px;
+}
+
+.hero-content {
+    animation: heroTextIn 0.9s ease both;
+}
+
+.eyebrow {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 23px;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    color: var(--primary-dark);
+    background: rgba(247, 242, 255, 0.88);
+    box-shadow: var(--shadow-xs);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+}
+
+.eyebrow span {
+    color: var(--primary);
+    font-size: 12px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.hero h1 {
+    max-width: 690px;
+    margin-bottom: 24px;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(47px, 5.3vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -4px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    display: block;
+    background: linear-gradient(
+        110deg,
+        var(--primary-dark) 0%,
+        var(--primary) 45%,
+        var(--accent) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content > p {
+    max-width: 600px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    min-height: 53px;
+    margin-top: 31px;
+    padding: 0 22px;
+    border-radius: 15px;
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        var(--primary-dark),
+        var(--primary) 52%,
+        var(--accent)
+    );
+    box-shadow: var(--shadow-purple);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.primary-btn b {
+    font-size: 18px;
+    font-weight: 500;
+    transition: transform var(--transition);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 50px rgba(124, 58, 237, 0.32);
+}
+
+.primary-btn:hover b {
+    transform: translateX(4px);
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin-top: 39px;
+}
+
+.hero-stats > div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hero-stats > div:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: -18px;
+    width: 1px;
+    height: 35px;
+    background: var(--border-strong);
+}
+
+.hero-stats strong {
+    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 21px;
+    line-height: 1;
+}
+
+.hero-stats span {
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    position: relative;
+    min-height: 515px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: visualReveal 1s 0.12s ease both;
+}
+
+.student-illustration {
+    position: relative;
+    width: 470px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-illustration::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.10);
+    filter: blur(65px);
+}
+
+.visual-orbit {
+    position: absolute;
+    border: 1px solid rgba(124, 58, 237, 0.14);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.orbit-one {
+    width: 390px;
+    height: 390px;
+    animation: orbitSpin 16s linear infinite;
+}
+
+.orbit-two {
+    width: 300px;
+    height: 300px;
+    border-style: dashed;
+    opacity: .55;
+    animation: orbitSpinReverse 13s linear infinite;
+}
+
+.student-card {
+    position: relative;
+    z-index: 3;
+    width: 330px;
+    height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(124, 58, 237, 0.16);
+    border-radius: 38px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.97),
+            rgba(247,242,255,.92)
+        );
+    box-shadow:
+        0 35px 90px rgba(91,33,182,.15),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    animation: studentFloat 5s ease-in-out infinite;
+}
+
+.student-card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(124, 58, 237, 0.07);
+    border-radius: 29px;
+}
+
+.student-card::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    width: 75px;
+    height: 8px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--purple-300), transparent);
+}
+
+.student-avatar {
+    position: absolute;
+    top: 58px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ede9fe, #c4b5fd);
+    box-shadow:
+        0 20px 45px rgba(124,58,237,.15),
+        inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+.avatar-head {
+    position: absolute;
+    top: 19px;
+    left: 50%;
+    width: 53px;
+    height: 58px;
+    transform: translateX(-50%);
+    border-radius: 48% 48% 44% 44%;
+    background: #f3c7a6;
+}
+
+.avatar-head::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: -3px;
+    width: 59px;
+    height: 32px;
+    border-radius: 60% 60% 35% 35%;
+    background: #38253e;
+}
+
+.avatar-head::after {
+    content: "";
+    position: absolute;
+    top: 34px;
+    left: 11px;
+    width: 8px;
+    height: 4px;
+    border-radius: 99px;
+    background: rgba(91,33,182,.25);
+    box-shadow: 22px 0 0 rgba(91,33,182,.25);
+}
+
+.avatar-body {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 92px;
+    height: 57px;
+    transform: translateX(-50%);
+    border-radius: 50px 50px 20px 20px;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+}
+
+.laptop {
+    position: absolute;
+    bottom: 55px;
+    width: 225px;
+    height: 125px;
+    border: 5px solid #c4b5fd;
+    border-radius: 16px;
+    background:
+        linear-gradient(145deg, #34213f, #170c26);
+    box-shadow: 0 22px 48px rgba(46,26,71,.25);
+    overflow: visible;
+}
+
+.laptop::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 15px;
+    width: 188px;
+    height: 82px;
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 25% 35%, #c084fc 0 4%, transparent 5%),
+        linear-gradient(135deg, rgba(124,58,237,.42), rgba(192,38,211,.25));
+    box-shadow: inset 0 0 35px rgba(168,85,247,.18);
+}
+
+.laptop::after {
+    content: "";
+    position: absolute;
+    left: -18px;
+    bottom: -15px;
+    width: 256px;
+    height: 10px;
+    border-radius: 0 0 12px 12px;
+    background: #c4b5fd;
+    box-shadow: 0 7px 15px rgba(91,33,182,.12);
+}
+
+.floating-icon {
+    position: absolute;
+    z-index: 6;
+    width: 53px;
+    height: 53px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--primary);
+    background: rgba(255,255,255,.94);
+    box-shadow: var(--shadow-md);
+    font-size: 18px;
+    font-weight: 800;
+    backdrop-filter: blur(15px);
+    animation: floatingIcon 4s ease-in-out infinite;
+}
+
+.icon-one {
+    top: 67px;
+    right: 17px;
+}
+
+.icon-two {
+    left: 20px;
+    bottom: 75px;
+    color: var(--accent);
+    animation-delay: 1s;
+}
+
+.icon-three {
+    top: 190px;
+    left: -2px;
+    animation-delay: 2s;
+}
+
+/* =========================================================
+   ANALYSIS CARD
+========================================================= */
+
+.analysis-card {
+    position: absolute;
+    z-index: 8;
+    right: -10px;
+    bottom: 25px;
+    width: 224px;
+    padding: 17px;
+    border: 1px solid rgba(124,58,237,.14);
+    border-radius: 21px;
+    background: rgba(255,255,255,.94);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(18px);
+    animation: analysisFloat 4.5s ease-in-out infinite;
+}
+
+.analysis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.analysis-header > span {
+    color: var(--text-secondary);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.analysis-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34,197,94,.09);
+}
+
+.mini-score {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.mini-ring {
+    position: relative;
+    width: 61px;
+    height: 61px;
+    flex: 0 0 61px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--primary) 0 87%,
+        var(--purple-100) 87% 100%
+    );
+}
+
+.mini-ring::before {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.mini-ring span {
+    position: relative;
+    z-index: 2;
+    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.analysis-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.analysis-info > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.check {
+    width: 13px;
+    height: 13px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background: var(--primary);
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.analysis-card > small {
+    display: block;
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 8px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.prediction-section,
+.result-section,
+.analytics-section,
+.about-section {
+    position: relative;
+}
+
+.section-heading {
+    width: min(760px, 90%);
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.section-icon {
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    color: var(--primary);
+    background: var(--surface-purple);
+    box-shadow: var(--shadow-xs);
+    font-size: 17px;
+}
+
+.section-heading > div:last-child {
+    flex: 1;
+}
+
+.section-heading span,
+.section-title-center > span,
+.about-content > span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+}
+
+.section-heading h2,
+.section-title-center h2,
+.about-content h2 {
+    margin-bottom: 10px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(31px, 4vw, 47px);
+    line-height: 1.1;
+    letter-spacing: -1.7px;
+    font-weight: 800;
+}
+
+.section-heading p,
+.section-title-center p,
+.about-content p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   PREDICTION SECTION
+========================================================= */
+
+.prediction-section {
+    padding: 100px 0 110px;
+    background:
+        radial-gradient(circle at 10% 30%, rgba(168,85,247,.07), transparent 27%),
+        linear-gradient(180deg, #f9f5ff 0%, #fcfaff 100%);
+    border-top: 1px solid rgba(124,58,237,.05);
+}
+
+#predictionForm {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
+    align-items: stretch;
+}
+
+.form-card {
+    position: relative;
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid rgba(124,58,237,.13);
+    border-radius: 24px;
+    background: rgba(255,255,255,.91);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(18px);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.form-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 13%;
+    right: 13%;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    opacity: .6;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+}
+
+.form-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.card-icon {
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: var(--primary);
+    background: var(--purple-100);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    font-size: 17px;
+}
+
+.form-card-header h3 {
+    margin-bottom: 2px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.form-card-header p {
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.field {
+    margin-bottom: 17px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 7px;
+    color: #50455b;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.field label span {
+    color: var(--text-muted);
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    height: 45px;
+    padding: 0 13px;
+    border: 1px solid #e1d8ed;
+    border-radius: 11px;
+    color: var(--text);
+    background: #fefcff;
+    font-size: 11px;
+    font-weight: 600;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+.field input::placeholder {
+    color: #b2a8bb;
+    font-weight: 500;
+}
+
+.field input:hover,
+.field select:hover {
+    border-color: var(--purple-300);
+    background: #ffffff;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: var(--primary-light);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(124,58,237,.09);
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin-bottom: 17px;
+}
+
+.two-column .field {
+    margin-bottom: 0;
+}
+
+.analyze-btn {
+    position: relative;
+    width: 100%;
+    height: 57px;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 15px;
+    color: #ffffff;
+    background:
+        linear-gradient(
+            110deg,
+            var(--primary-dark),
+            var(--primary) 46%,
+            var(--accent)
+        );
+    box-shadow: 0 17px 40px rgba(124,58,237,.24);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.analyze-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 75%;
+    height: 100%;
+    transform: skewX(-25deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.22),
+        transparent
+    );
+    transition: left .7s ease;
+}
+
+.analyze-btn:hover::before {
+    left: 150%;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 52px rgba(124,58,237,.31);
+}
+
+.analyze-btn b {
+    margin-left: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    vertical-align: -1px;
+}
+
+.analyze-btn span {
+    margin-right: 5px;
+}
+
+.analyze-btn:active {
+    transform: translateY(-1px);
+}
+
+.analyze-btn:disabled {
+    opacity: .7;
+    cursor: wait;
+}
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-section {
+    padding: 105px 0;
+    background: #ffffff;
+}
+
+.result-panel {
+    width: min(1000px, 90%);
+    min-height: 520px;
+    margin: 0 auto;
+    padding: 39px;
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 45px;
+    align-items: center;
+    border: 1px solid rgba(124,58,237,.14);
+    border-radius: 31px;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(168,85,247,.07), transparent 25%),
+        linear-gradient(145deg, #ffffff, #fbf8ff);
+    box-shadow: var(--shadow-md);
+}
+
+.probability-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-ring {
+    position: relative;
+    width: 235px;
+    height: 235px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background:
+        conic-gradient(
+            var(--primary) 0deg,
+            var(--accent) 0deg,
+            #eee7f8 0deg
+        );
+    box-shadow:
+        0 25px 65px rgba(124,58,237,.17),
+        inset 0 0 0 1px rgba(255,255,255,.6);
+    transition: background 1s ease;
+}
+
+.result-ring::before {
+    content: "";
+    position: absolute;
+    width: 181px;
+    height: 181px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: inset 0 0 30px rgba(124,58,237,.04);
+}
+
+.ring-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.ring-inner strong {
+    display: block;
+    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.ring-inner span {
+    display: block;
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.35;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.result-content {
+    min-width: 0;
+}
+
+.result-placeholder {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(124,58,237,.09);
+}
+
+.placeholder-icon {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 15px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: var(--primary);
+    background: var(--purple-100);
+    font-size: 18px;
+}
+
+.result-content h3,
+.result-title {
+    margin-bottom: 7px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.result-content p,
+.result-description {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.profile-summary {
+    margin-top: 24px;
+    padding: 21px;
+    border: 1px solid rgba(124,58,237,.10);
+    border-radius: 19px;
+    background: rgba(247,242,255,.7);
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 14px;
+}
+
+.summary-header span {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: var(--primary);
+    background: var(--purple-100);
+    font-size: 10px;
+}
+
+.summary-header h3 {
+    margin: 0;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(124,58,237,.10);
+}
+
+.summary-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.summary-row span {
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.summary-row strong {
+    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+}
+
+.result-actions {
+    width: min(1000px, 90%);
+    margin: 22px auto 0;
+    display: flex;
+    justify-content: center;
+}
+
+.result-actions .secondary-btn {
+    min-height: 45px;
+    padding: 0 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--primary-dark);
+    background: var(--surface-purple);
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.result-actions .secondary-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple-300);
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+.analytics-section {
+    padding: 105px 0;
+    background:
+        radial-gradient(circle at 90% 20%, rgba(168,85,247,.08), transparent 28%),
+        #faf8ff;
+}
+
+.section-title-center {
+    width: min(720px, 90%);
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.analytics-grid {
+    width: min(1000px, 90%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
+}
+
+.analytics-card {
+    position: relative;
+    min-height: 225px;
+    padding: 27px;
+    overflow: hidden;
+    border: 1px solid rgba(124,58,237,.12);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.analytics-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s ease;
+}
+
+.analytics-card::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -70px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: rgba(124,58,237,.055);
+}
+
+.analytics-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--purple-300);
+    box-shadow: var(--shadow-lg);
+}
+
+.analytics-card:hover::before {
+    transform: scaleX(1);
+}
+
+.analytics-icon {
+    position: relative;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: var(--primary);
+    background: var(--purple-100);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.analytics-card h3 {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 9px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.analytics-card p {
+    position: relative;
+    z-index: 2;
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.75;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+    width: min(1000px, 90%);
+    min-height: 340px;
+    margin: 0 auto;
+    padding: 80px 0 100px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-content {
+    max-width: 700px;
+}
+
+.about-content h2 {
+    font-size: clamp(30px, 4vw, 46px);
+}
+
+.about-content p {
+    max-width: 650px;
+    font-size: 13px;
+}
+
+.about-badge {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #ffffff 48%, transparent 49%),
+        conic-gradient(
+            var(--primary),
+            var(--accent),
+            var(--primary)
+        );
+    box-shadow: var(--shadow-lg);
+    animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.about-badge strong {
+    position: relative;
+    z-index: 2;
+    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 38px;
+    line-height: 1;
+}
+
+.about-badge span {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1.3;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    position: relative;
+    padding: 34px 0;
+    overflow: hidden;
+    color: #dcd2e8;
+    background:
+        radial-gradient(circle at 80% 0%, rgba(168,85,247,.20), transparent 28%),
+        linear-gradient(135deg, #1d102e, #28143e);
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(196,181,253,.5),
+        transparent
+    );
+}
+
+footer > div:first-child {
+    width: min(var(--container), 90%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+footer strong {
+    display: block;
+    color: #ffffff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+}
+
+footer strong span {
+    color: #c084fc;
+}
+
+footer p {
+    margin-top: 3px;
+    color: #a99ab8;
+    font-size: 9px;
+}
+
+footer > span {
+    display: block;
+    width: min(var(--container), 90%);
+    margin: 20px auto 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,.07);
+    color: #9687a6;
+    font-size: 9px;
+}
+
+/* =========================================================
+   FOCUS / ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(168,85,247,.28);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =========================================================
+   REVEAL SUPPORT
+========================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 8px;
+    vertical-align: -3px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes navbarDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroTextIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes visualReveal {
+    from {
+        opacity: 0;
+        transform: scale(.92) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes studentFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-11px);
+    }
+}
+
+@keyframes floatingIcon {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(4deg);
+    }
+}
+
+@keyframes analysisFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes badgeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes onlinePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 4px rgba(34,197,94,.10);
+    }
+    50% {
+        box-shadow: 0 0 0 9px rgba(34,197,94,.03);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.25) rotate(12deg);
+        opacity: .65;
+    }
+}
+
+@keyframes orbitSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbitSpinReverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   DESKTOP POLISH
+========================================================= */
+
+@media (min-width: 1200px) {
+    .hero h1 {
+        font-size: 76px;
+    }
+
+    .hero {
+        min-height: 735px;
+    }
+
+    .student-illustration {
+        transform: translateX(10px);
+    }
+
+    .analysis-card {
+        right: -30px;
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+    .nav-links {
+        gap: 20px;
+    }
+
+    .hero-container {
+        gap: 42px;
+    }
+
+    .hero h1 {
+        font-size: clamp(45px, 6vw, 64px);
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .result-panel {
+        width: min(1000px, 90%);
+    }
+
+    .analytics-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   TABLET SMALL
+========================================================= */
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .model-status {
+        display: none;
+    }
+
+    .hero {
+        padding: 70px 0 60px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-content > p {
+        margin-inline: auto;
+    }
+
+    .hero-visual {
+        min-height: 500px;
+    }
+
+    .student-illustration {
+        transform: scale(.94);
+    }
+
+    .result-panel {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .probability-area {
+        padding-top: 5px;
+    }
+
+    .result-content {
+        text-align: center;
+    }
+
+    .placeholder-icon {
+        margin-inline: auto;
+    }
+
+    .result-placeholder p {
+        max-width: 580px;
+        margin-inline: auto;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-content {
+        margin-inline: auto;
+    }
+
+    .about-badge {
+        margin-inline: auto;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+    .nav-container,
+    .hero-container {
+        width: 91%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .brand h2 {
+        font-size: 18px;
+    }
+
+    .brand small {
+        font-size: 7px;
+    }
+
+    .brand-icon {
+        width: 39px;
+        height: 39px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 61px 0 45px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        letter-spacing: -2.7px;
+    }
+
+    .hero-content > p {
+        max-width: 540px;
+        font-size: 13px;
+    }
+
+    .hero-stats {
+        gap: 24px;
+    }
+
+    .hero-stats > div:not(:last-child)::after {
+        right: -13px;
+    }
+
+    .hero-visual {
+        min-height: 435px;
+    }
+
+    .student-illustration {
+        transform: scale(.82);
+    }
+
+    .analysis-card {
+        right: -3px;
+        bottom: 0;
+    }
+
+    .prediction-section,
+    .result-section,
+    .analytics-section {
+        padding: 75px 0;
+    }
+
+    .section-heading {
+        width: 90%;
+        margin-bottom: 37px;
+        gap: 12px;
+    }
+
+    .section-heading h2,
+    .section-title-center h2 {
+        font-size: 34px;
+        letter-spacing: -1.2px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #predictionForm {
+        width: 91%;
+    }
+
+    .form-card {
+        padding: 23px;
+    }
+
+    .result-panel {
+        width: 91%;
+        padding: 27px 21px;
+        border-radius: 25px;
+    }
+
+    .result-ring {
+        width: 205px;
+        height: 205px;
+    }
+
+    .result-ring::before {
+        width: 157px;
+        height: 157px;
+    }
+
+    .analytics-grid {
+        width: 91%;
+    }
+
+    .about-section {
+        width: 91%;
+        padding: 70px 0 80px;
+    }
+
+    .about-content h2 {
+        font-size: 34px;
+    }
+
+    footer > div:first-child,
+    footer > span {
+        width: 91%;
+    }
+
+    footer > div:first-child {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer > span {
+        text-align: center;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 39px;
+        letter-spacing: -2px;
+    }
+
+    .eyebrow {
+        font-size: 8px;
+    }
+
+    .primary-btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .hero-stats > div:not(:last-child)::after {
+        display: none;
+    }
+
+    .hero-stats strong {
+        font-size: 17px;
+    }
+
+    .hero-stats span {
+        font-size: 7px;
+    }
+
+    .hero-visual {
+        min-height: 375px;
+    }
+
+    .student-illustration {
+        transform: scale(.67);
+    }
+
+    .analysis-card {
+        right: -17px;
+        bottom: -5px;
+        transform: scale(.84);
+        transform-origin: right bottom;
+    }
+
+    .section-heading {
+        display: block;
+        text-align: center;
+    }
+
+    .section-icon {
+        margin: 0 auto 14px;
+    }
+
+    .section-heading h2,
+    .section-title-center h2,
+    .about-content h2 {
+        font-size: 30px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+    }
+
+    .form-card {
+        border-radius: 21px;
+        padding: 20px 17px;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .result-ring {
+        width: 180px;
+        height: 180px;
+    }
+
+    .result-ring::before {
+        width: 138px;
+        height: 138px;
+    }
+
+    .ring-inner strong {
+        font-size: 34px;
+    }
+
+    .profile-summary {
+        padding: 17px;
+    }
+
+    .summary-row span {
+        font-size: 8px;
+    }
+
+    .summary-row strong {
+        font-size: 10px;
+    }
+
+    .about-badge {
+        width: 145px;
+        height: 145px;
+    }
+
+    .about-badge strong {
+        font-size: 31px;
+    }
+}
+
+/* =========================================================
+   EXTRA FORM STATES
+========================================================= */
+
+.field input:valid:not(:placeholder-shown) {
+    border-color: rgba(124,58,237,.23);
+}
+
+.field select:valid {
+    border-color: rgba(124,58,237,.23);
+}
+
+.field input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+}
+
+/* =========================================================
+   RESULT STATES
+========================================================= */
+
+.result-content.placed .placeholder-icon {
+    color: var(--success);
+    background: rgba(22,163,74,.10);
+}
+
+.result-content.not-placed .placeholder-icon {
+    color: var(--danger);
+    background: rgba(220,38,38,.08);
+}
+
+.result-content.placed h3 {
+    color: var(--success);
+}
+
+.result-content.not-placed h3 {
+    color: var(--danger);
+}
+
+/* =========================================================
+   PREMIUM GLASS DETAILS
+========================================================= */
+
+.navbar,
+.form-card,
+.result-panel,
+.analytics-card,
+.about-badge {
+    isolation: isolate;
+}
+
+.form-card::after,
+.analytics-card::after {
+    pointer-events: none;
+}
+
+.form-card-header,
+.field,
+.two-column {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   FINAL VISUAL DETAILS
+========================================================= */
+
+.hero-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 65%;
+    height: 100%;
+    transform: skewX(-25deg);
+    background: rgba(255,255,255,.16);
+    transition: left .65s ease;
+}
+
+.hero-btn:hover::before {
+    left: 140%;
+}
+
+.hero-btn span,
+.hero-btn b {
+    position: relative;
+    z-index: 2;
+}
+
+.form-card-header > div:last-child {
+    min-width: 0;
+}
+
+.form-card-header h3,
+.form-card-header p {
+    white-space: normal;
+}
+
+.analysis-info,
+.summary-row,
+.hero-stats,
+.nav-container,
+.footer {
+    user-select: none;
+}
+
+/* ---- Purple system utility 001 ---- */
+.purple-tone-001 {
+    --purple-system-step: 1;
+}
+
+
+/* ---- Purple system utility 002 ---- */
+.purple-tone-002 {
+    --purple-system-step: 2;
+}
+
+
+/* ---- Purple system utility 003 ---- */
+.purple-tone-003 {
+    --purple-system-step: 3;
+}
+
+
+/* ---- Purple system utility 004 ---- */
+.purple-tone-004 {
+    --purple-system-step: 4;
+}
+
+
+/* ---- Purple system utility 005 ---- */
+.purple-tone-005 {
+    --purple-system-step: 5;
+}
+
+
+/* ---- Purple system utility 006 ---- */
+.purple-tone-006 {
+    --purple-system-step: 6;
+}
+
+
+/* ---- Purple system utility 007 ---- */
+.purple-tone-007 {
+    --purple-system-step: 7;
+}
+
+
+/* ---- Purple system utility 008 ---- */
+.purple-tone-008 {
+    --purple-system-step: 8;
+}
+
+
+/* ---- Purple system utility 009 ---- */
+.purple-tone-009 {
+    --purple-system-step: 9;
+}
+
+
+/* ---- Purple system utility 010 ---- */
+.purple-tone-010 {
+    --purple-system-step: 10;
+}
+
+
+/* ---- Purple system utility 011 ---- */
+.purple-tone-011 {
+    --purple-system-step: 11;
+}
+
+
+/* ---- Purple system utility 012 ---- */
+.purple-tone-012 {
+    --purple-system-step: 12;
+}
+
+
+/* ---- Purple system utility 013 ---- */
+.purple-tone-013 {
+    --purple-system-step: 13;
+}
+
+
+/* ---- Purple system utility 014 ---- */
+.purple-tone-014 {
+    --purple-system-step: 14;
+}
+
+
+/* ---- Purple system utility 015 ---- */
+.purple-tone-015 {
+    --purple-system-step: 15;
+}
+
+
+/* ---- Purple system utility 016 ---- */
+.purple-tone-016 {
+    --purple-system-step: 16;
+}
+
+
+/* ---- Purple system utility 017 ---- */
+.purple-tone-017 {
+    --purple-system-step: 17;
+}
+
+
+/* ---- Purple system utility 018 ---- */
+.purple-tone-018 {
+    --purple-system-step: 18;
+}
+
+
+/* ---- Purple system utility 019 ---- */
+.purple-tone-019 {
+    --purple-system-step: 19;
+}
+
+
+/* ---- Purple system utility 020 ---- */
+.purple-tone-020 {
+    --purple-system-step: 20;
+}
+
+
+/* ---- Purple system utility 021 ---- */
+.purple-tone-021 {
+    --purple-system-step: 21;
+}
+
+
+/* ---- Purple system utility 022 ---- */
+.purple-tone-022 {
+    --purple-system-step: 22;
+}
+
+
+/* ---- Purple system utility 023 ---- */
+.purple-tone-023 {
+    --purple-system-step: 23;
+}
+
+
+/* ---- Purple system utility 024 ---- */
+.purple-tone-024 {
+    --purple-system-step: 24;
+}
+
+
+/* ---- Purple system utility 025 ---- */
+.purple-tone-025 {
+    --purple-system-step: 25;
+}
+
+
+/* ---- Purple system utility 026 ---- */
+.purple-tone-026 {
+    --purple-system-step: 26;
+}
+
+
+/* ---- Purple system utility 027 ---- */
+.purple-tone-027 {
+    --purple-system-step: 27;
+}
+
+
+/* ---- Purple system utility 028 ---- */
+.purple-tone-028 {
+    --purple-system-step: 28;
+}
+
+
+/* ---- Purple system utility 029 ---- */
+.purple-tone-029 {
+    --purple-system-step: 29;
+}
+
+
+/* ---- Purple system utility 030 ---- */
+.purple-tone-030 {
+    --purple-system-step: 30;
+}
+
+
+/* ---- Purple system utility 031 ---- */
+.purple-tone-031 {
+    --purple-system-step: 31;
+}
+
+
+/* ---- Purple system utility 032 ---- */
+.purple-tone-032 {
+    --purple-system-step: 32;
+}
+
+
+/* ---- Purple system utility 033 ---- */
+.purple-tone-033 {
+    --purple-system-step: 33;
+}
+
+
+/* ---- Purple system utility 034 ---- */
+.purple-tone-034 {
+    --purple-system-step: 34;
+}
+
+
+/* ---- Purple system utility 035 ---- */
+.purple-tone-035 {
+    --purple-system-step: 35;
+}
+
+
+/* ---- Purple system utility 036 ---- */
+.purple-tone-036 {
+    --purple-system-step: 36;
+}
+
+
+/* ---- Purple system utility 037 ---- */
+.purple-tone-037 {
+    --purple-system-step: 37;
+}
+
+
+/* ---- Purple system utility 038 ---- */
+.purple-tone-038 {
+    --purple-system-step: 38;
+}
+
+
+/* ---- Purple system utility 039 ---- */
+.purple-tone-039 {
+    --purple-system-step: 39;
+}
+
+
+/* ---- Purple system utility 040 ---- */
+.purple-tone-040 {
+    --purple-system-step: 40;
+}
+
+
+/* ---- Purple system utility 041 ---- */
+.purple-tone-041 {
+    --purple-system-step: 41;
+}
+
+
+/* ---- Purple system utility 042 ---- */
+.purple-tone-042 {
+    --purple-system-step: 42;
+}
+
+
+/* ---- Purple system utility 043 ---- */
+.purple-tone-043 {
+    --purple-system-step: 43;
+}
+
+
+/* ---- Purple system utility 044 ---- */
+.purple-tone-044 {
+    --purple-system-step: 44;
+}
+
+
+/* ---- Purple system utility 045 ---- */
+.purple-tone-045 {
+    --purple-system-step: 45;
+}
+
+
+/* ---- Purple system utility 046 ---- */
+.purple-tone-046 {
+    --purple-system-step: 46;
+}
+
+
+/* ---- Purple system utility 047 ---- */
+.purple-tone-047 {
+    --purple-system-step: 47;
+}
+
+
+/* ---- Purple system utility 048 ---- */
+.purple-tone-048 {
+    --purple-system-step: 48;
+}
+
+
+/* ---- Purple system utility 049 ---- */
+.purple-tone-049 {
+    --purple-system-step: 49;
+}
+
+
+/* ---- Purple system utility 050 ---- */
+.purple-tone-050 {
+    --purple-system-step: 50;
+}
+
+
+/* ---- Purple system utility 051 ---- */
+.purple-tone-051 {
+    --purple-system-step: 51;
+}
+
+
+/* ---- Purple system utility 052 ---- */
+.purple-tone-052 {
+    --purple-system-step: 52;
+}
+
+
+/* ---- Purple system utility 053 ---- */
+.purple-tone-053 {
+    --purple-system-step: 53;
+}
+
+
+/* ---- Purple system utility 054 ---- */
+.purple-tone-054 {
+    --purple-system-step: 54;
+}
+
+
+/* ---- Purple system utility 055 ---- */
+.purple-tone-055 {
+    --purple-system-step: 55;
+}
+
+
+/* ---- Purple system utility 056 ---- */
+.purple-tone-056 {
+    --purple-system-step: 56;
+}
+
+
+/* ---- Purple system utility 057 ---- */
+.purple-tone-057 {
+    --purple-system-step: 57;
+}
+
+
+/* ---- Purple system utility 058 ---- */
+.purple-tone-058 {
+    --purple-system-step: 58;
+}
+
+
+/* ---- Purple system utility 059 ---- */
+.purple-tone-059 {
+    --purple-system-step: 59;
+}
+
+
+/* ---- Purple system utility 060 ---- */
+.purple-tone-060 {
+    --purple-system-step: 60;
+}
+
+
+/* ---- Purple system utility 061 ---- */
+.purple-tone-061 {
+    --purple-system-step: 61;
+}
+
+
+/* ---- Purple system utility 062 ---- */
+.purple-tone-062 {
+    --purple-system-step: 62;
+}
+
+
+/* ---- Purple system utility 063 ---- */
+.purple-tone-063 {
+    --purple-system-step: 63;
+}
+
+
+/* ---- Purple system utility 064 ---- */
+.purple-tone-064 {
+    --purple-system-step: 64;
+}
+
+
+/* ---- Purple system utility 065 ---- */
+.purple-tone-065 {
+    --purple-system-step: 65;
+}
+
+
+/* ---- Purple system utility 066 ---- */
+.purple-tone-066 {
+    --purple-system-step: 66;
+}
+
+
+/* ---- Purple system utility 067 ---- */
+.purple-tone-067 {
+    --purple-system-step: 67;
+}
+
+
+/* ---- Purple system utility 068 ---- */
+.purple-tone-068 {
+    --purple-system-step: 68;
+}
+
+
+/* ---- Purple system utility 069 ---- */
+.purple-tone-069 {
+    --purple-system-step: 69;
+}
+
+
+/* ---- Purple system utility 070 ---- */
+.purple-tone-070 {
+    --purple-system-step: 70;
+}
+
+
+/* ---- Purple system utility 071 ---- */
+.purple-tone-071 {
+    --purple-system-step: 71;
+}
+
+
+/* ---- Purple system utility 072 ---- */
+.purple-tone-072 {
+    --purple-system-step: 72;
+}
+
+
+/* ---- Purple system utility 073 ---- */
+.purple-tone-073 {
+    --purple-system-step: 73;
+}
+
+
+/* ---- Purple system utility 074 ---- */
+.purple-tone-074 {
+    --purple-system-step: 74;
+}
+
+
+/* ---- Purple system utility 075 ---- */
+.purple-tone-075 {
+    --purple-system-step: 75;
+}
+
+
+/* ---- Purple system utility 076 ---- */
+.purple-tone-076 {
+    --purple-system-step: 76;
+}
+
+
+/* ---- Purple system utility 077 ---- */
+.purple-tone-077 {
+    --purple-system-step: 77;
+}
+
+
+/* ---- Purple system utility 078 ---- */
+.purple-tone-078 {
+    --purple-system-step: 78;
+}
+
+
+/* ---- Purple system utility 079 ---- */
+.purple-tone-079 {
+    --purple-system-step: 79;
+}
+
+
+/* ---- Purple system utility 080 ---- */
+.purple-tone-080 {
+    --purple-system-step: 80;
+}
+
+
+/* ---- Purple system utility 081 ---- */
+.purple-tone-081 {
+    --purple-system-step: 81;
+}
+
+
+/* ---- Purple system utility 082 ---- */
+.purple-tone-082 {
+    --purple-system-step: 82;
+}
+
+
+/* ---- Purple system utility 083 ---- */
+.purple-tone-083 {
+    --purple-system-step: 83;
+}
+
+
+/* ---- Purple system utility 084 ---- */
+.purple-tone-084 {
+    --purple-system-step: 84;
+}
+
+
+/* ---- Purple system utility 085 ---- */
+.purple-tone-085 {
+    --purple-system-step: 85;
+}
+
+
+/* ---- Purple system utility 086 ---- */
+.purple-tone-086 {
+    --purple-system-step: 86;
+}
+
+
+/* ---- Purple system utility 087 ---- */
+.purple-tone-087 {
+    --purple-system-step: 87;
+}
+
+
+/* ---- Purple system utility 088 ---- */
+.purple-tone-088 {
+    --purple-system-step: 88;
+}
+
+
+/* ---- Purple system utility 089 ---- */
+.purple-tone-089 {
+    --purple-system-step: 89;
+}
+
+
+/* ---- Purple system utility 090 ---- */
+.purple-tone-090 {
+    --purple-system-step: 90;
+}
+
+
+/* ---- Purple system utility 091 ---- */
+.purple-tone-091 {
+    --purple-system-step: 91;
+}
+
+
+/* ---- Purple system utility 092 ---- */
+.purple-tone-092 {
+    --purple-system-step: 92;
+}
+
+
+/* ---- Purple system utility 093 ---- */
+.purple-tone-093 {
+    --purple-system-step: 93;
+}
+
+
+/* ---- Purple system utility 094 ---- */
+.purple-tone-094 {
+    --purple-system-step: 94;
+}
+
+
+/* ---- Purple system utility 095 ---- */
+.purple-tone-095 {
+    --purple-system-step: 95;
+}
+
+
+/* ---- Purple system utility 096 ---- */
+.purple-tone-096 {
+    --purple-system-step: 96;
+}
+
+
+/* ---- Purple system utility 097 ---- */
+.purple-tone-097 {
+    --purple-system-step: 97;
+}
+
+
+/* ---- Purple system utility 098 ---- */
+.purple-tone-098 {
+    --purple-system-step: 98;
+}
+
+
+/* ---- Purple system utility 099 ---- */
+.purple-tone-099 {
+    --purple-system-step: 99;
+}
+
+
+/* ---- Purple system utility 100 ---- */
+.purple-tone-100 {
+    --purple-system-step: 100;
+}
+
+
+/* ---- Purple system utility 101 ---- */
+.purple-tone-101 {
+    --purple-system-step: 101;
+}
+
+
+/* ---- Purple system utility 102 ---- */
+.purple-tone-102 {
+    --purple-system-step: 102;
+}
+
+
+/* ---- Purple system utility 103 ---- */
+.purple-tone-103 {
+    --purple-system-step: 103;
+}
+
+
+/* ---- Purple system utility 104 ---- */
+.purple-tone-104 {
+    --purple-system-step: 104;
+}
+
+
+/* ---- Purple system utility 105 ---- */
+.purple-tone-105 {
+    --purple-system-step: 105;
+}
+
+
+/* ---- Purple system utility 106 ---- */
+.purple-tone-106 {
+    --purple-system-step: 106;
+}
+
+
+/* ---- Purple system utility 107 ---- */
+.purple-tone-107 {
+    --purple-system-step: 107;
+}
+
+
+/* ---- Purple system utility 108 ---- */
+.purple-tone-108 {
+    --purple-system-step: 108;
+}
+
+
+/* ---- Purple system utility 109 ---- */
+.purple-tone-109 {
+    --purple-system-step: 109;
+}
+
+
+/* ---- Purple system utility 110 ---- */
+.purple-tone-110 {
+    --purple-system-step: 110;
+}
+
+
+/* ---- Purple system utility 111 ---- */
+.purple-tone-111 {
+    --purple-system-step: 111;
+}
+
+
+/* ---- Purple system utility 112 ---- */
+.purple-tone-112 {
+    --purple-system-step: 112;
+}
+
+
+/* ---- Purple system utility 113 ---- */
+.purple-tone-113 {
+    --purple-system-step: 113;
+}
+
+
+/* ---- Purple system utility 114 ---- */
+.purple-tone-114 {
+    --purple-system-step: 114;
+}
+
+
+/* ---- Purple system utility 115 ---- */
+.purple-tone-115 {
+    --purple-system-step: 115;
+}
+
+
+/* ---- Purple system utility 116 ---- */
+.purple-tone-116 {
+    --purple-system-step: 116;
+}
+
+
+/* ---- Purple system utility 117 ---- */
+.purple-tone-117 {
+    --purple-system-step: 117;
+}
+
+
+/* ---- Purple system utility 118 ---- */
+.purple-tone-118 {
+    --purple-system-step: 118;
+}
+
+
+/* ---- Purple system utility 119 ---- */
+.purple-tone-119 {
+    --purple-system-step: 119;
+}
+
+
+/* ---- Purple system utility 120 ---- */
+.purple-tone-120 {
+    --purple-system-step: 120;
+}
+
+
+/* ---- Purple system utility 121 ---- */
+.purple-tone-121 {
+    --purple-system-step: 121;
+}
+
+
+/* ---- Purple system utility 122 ---- */
+.purple-tone-122 {
+    --purple-system-step: 122;
+}
+
+
+/* ---- Purple system utility 123 ---- */
+.purple-tone-123 {
+    --purple-system-step: 123;
+}
+
+
+/* ---- Purple system utility 124 ---- */
+.purple-tone-124 {
+    --purple-system-step: 124;
+}
+
+
+/* ---- Purple system utility 125 ---- */
+.purple-tone-125 {
+    --purple-system-step: 125;
+}
+
+
+/* ---- Purple system utility 126 ---- */
+.purple-tone-126 {
+    --purple-system-step: 126;
+}
+
+
+/* ---- Purple system utility 127 ---- */
+.purple-tone-127 {
+    --purple-system-step: 127;
+}
+
+
+/* ---- Purple system utility 128 ---- */
+.purple-tone-128 {
+    --purple-system-step: 128;
+}
+
+
+/* ---- Purple system utility 129 ---- */
+.purple-tone-129 {
+    --purple-system-step: 129;
+}
+
+
+/* ---- Purple system utility 130 ---- */
+.purple-tone-130 {
+    --purple-system-step: 130;
+}
+
+
+/* ---- Purple system utility 131 ---- */
+.purple-tone-131 {
+    --purple-system-step: 131;
+}
+
+
+/* ---- Purple system utility 132 ---- */
+.purple-tone-132 {
+    --purple-system-step: 132;
+}
+
+
+/* ---- Purple system utility 133 ---- */
+.purple-tone-133 {
+    --purple-system-step: 133;
+}
+
+
+/* ---- Purple system utility 134 ---- */
+.purple-tone-134 {
+    --purple-system-step: 134;
+}
+
+
+/* ---- Purple system utility 135 ---- */
+.purple-tone-135 {
+    --purple-system-step: 135;
+}
+
+
+/* ---- Purple system utility 136 ---- */
+.purple-tone-136 {
+    --purple-system-step: 136;
+}
+
+
+/* ---- Purple system utility 137 ---- */
+.purple-tone-137 {
+    --purple-system-step: 137;
+}
+
+
+/* ---- Purple system utility 138 ---- */
+.purple-tone-138 {
+    --purple-system-step: 138;
+}
+
+
+/* ---- Purple system utility 139 ---- */
+.purple-tone-139 {
+    --purple-system-step: 139;
+}
+
+
+/* ---- Purple system utility 140 ---- */
+.purple-tone-140 {
+    --purple-system-step: 140;
+}
+
+
+/* ---- Purple system utility 141 ---- */
+.purple-tone-141 {
+    --purple-system-step: 141;
+}
+
+
+/* ---- Purple system utility 142 ---- */
+.purple-tone-142 {
+    --purple-system-step: 142;
+}
+
+
+/* ---- Purple system utility 143 ---- */
+.purple-tone-143 {
+    --purple-system-step: 143;
+}
+
+
+/* ---- Purple system utility 144 ---- */
+.purple-tone-144 {
+    --purple-system-step: 144;
+}
+
+
+/* ---- Purple system utility 145 ---- */
+.purple-tone-145 {
+    --purple-system-step: 145;
+}
+
+
+/* ---- Purple system utility 146 ---- */
+.purple-tone-146 {
+    --purple-system-step: 146;
+}
+
+
+/* ---- Purple system utility 147 ---- */
+.purple-tone-147 {
+    --purple-system-step: 147;
+}
+
+
+/* ---- Purple system utility 148 ---- */
+.purple-tone-148 {
+    --purple-system-step: 148;
+}
+
+
+/* ---- Purple system utility 149 ---- */
+.purple-tone-149 {
+    --purple-system-step: 149;
+}
+
+
+/* ---- Purple system utility 150 ---- */
+.purple-tone-150 {
+    --purple-system-step: 150;
+}
+
+
+/* ---- Purple system utility 151 ---- */
+.purple-tone-151 {
+    --purple-system-step: 151;
+}
+
+
+/* ---- Purple system utility 152 ---- */
+.purple-tone-152 {
+    --purple-system-step: 152;
+}
+
+
+/* ---- Purple system utility 153 ---- */
+.purple-tone-153 {
+    --purple-system-step: 153;
+}
+
+
+/* ---- Purple system utility 154 ---- */
+.purple-tone-154 {
+    --purple-system-step: 154;
+}
+
+
+/* ---- Purple system utility 155 ---- */
+.purple-tone-155 {
+    --purple-system-step: 155;
+}
+
+
+/* ---- Purple system utility 156 ---- */
+.purple-tone-156 {
+    --purple-system-step: 156;
+}
+
+
+/* ---- Purple system utility 157 ---- */
+.purple-tone-157 {
+    --purple-system-step: 157;
+}
+
+
+/* ---- Purple system utility 158 ---- */
+.purple-tone-158 {
+    --purple-system-step: 158;
+}
+
+
+/* ---- Purple system utility 159 ---- */
+.purple-tone-159 {
+    --purple-system-step: 159;
+}
+
+
+/* ---- Purple system utility 160 ---- */
+.purple-tone-160 {
+    --purple-system-step: 160;
+}
+
+
+/* ---- Purple system utility 161 ---- */
+.purple-tone-161 {
+    --purple-system-step: 161;
+}
+
+
+/* ---- Purple system utility 162 ---- */
+.purple-tone-162 {
+    --purple-system-step: 162;
+}
+
+
+/* ---- Purple system utility 163 ---- */
+.purple-tone-163 {
+    --purple-system-step: 163;
+}
+
+
+/* ---- Purple system utility 164 ---- */
+.purple-tone-164 {
+    --purple-system-step: 164;
+}
+
+
+/* ---- Purple system utility 165 ---- */
+.purple-tone-165 {
+    --purple-system-step: 165;
+}
+
+
+/* ---- Purple system utility 166 ---- */
+.purple-tone-166 {
+    --purple-system-step: 166;
+}
+
+
+/* ---- Purple system utility 167 ---- */
+.purple-tone-167 {
+    --purple-system-step: 167;
+}
+
+
+/* ---- Purple system utility 168 ---- */
+.purple-tone-168 {
+    --purple-system-step: 168;
+}
+
+
+/* ---- Purple system utility 169 ---- */
+.purple-tone-169 {
+    --purple-system-step: 169;
+}
+
+
+/* ---- Purple system utility 170 ---- */
+.purple-tone-170 {
+    --purple-system-step: 170;
+}
+
+
+/* ---- Purple system utility 171 ---- */
+.purple-tone-171 {
+    --purple-system-step: 171;
+}
+
+
+/* ---- Purple system utility 172 ---- */
+.purple-tone-172 {
+    --purple-system-step: 172;
+}
+
+
+/* ---- Purple system utility 173 ---- */
+.purple-tone-173 {
+    --purple-system-step: 173;
+}
+
+
+/* ---- Purple system utility 174 ---- */
+.purple-tone-174 {
+    --purple-system-step: 174;
+}
+
+
+/* ---- Purple system utility 175 ---- */
+.purple-tone-175 {
+    --purple-system-step: 175;
+}
+
+
+/* ---- Purple system utility 176 ---- */
+.purple-tone-176 {
+    --purple-system-step: 176;
+}
+
+
+/* ---- Purple system utility 177 ---- */
+.purple-tone-177 {
+    --purple-system-step: 177;
+}
+
+
+/* ---- Purple system utility 178 ---- */
+.purple-tone-178 {
+    --purple-system-step: 178;
+}
+
+
+/* ---- Purple system utility 179 ---- */
+.purple-tone-179 {
+    --purple-system-step: 179;
+}
+
+
+/* ---- Purple system utility 180 ---- */
+.purple-tone-180 {
+    --purple-system-step: 180;
+}
+
+
+/* ---- Purple system utility 181 ---- */
+.purple-tone-181 {
+    --purple-system-step: 181;
+}
+
+
+/* ---- Purple system utility 182 ---- */
+.purple-tone-182 {
+    --purple-system-step: 182;
+}
+
+
+/* ---- Purple system utility 183 ---- */
+.purple-tone-183 {
+    --purple-system-step: 183;
+}
+
+
+/* ---- Purple system utility 184 ---- */
+.purple-tone-184 {
+    --purple-system-step: 184;
+}
+
+
+/* ---- Purple system utility 185 ---- */
+.purple-tone-185 {
+    --purple-system-step: 185;
+}
+
+
+/* ---- Purple system utility 186 ---- */
+.purple-tone-186 {
+    --purple-system-step: 186;
+}
+
+
+/* ---- Purple system utility 187 ---- */
+.purple-tone-187 {
+    --purple-system-step: 187;
+}
+
+
+/* ---- Purple system utility 188 ---- */
+.purple-tone-188 {
+    --purple-system-step: 188;
+}
+
+
+/* ---- Purple system utility 189 ---- */
+.purple-tone-189 {
+    --purple-system-step: 189;
+}
+
+
+/* ---- Purple system utility 190 ---- */
+.purple-tone-190 {
+    --purple-system-step: 190;
+}
+
+
+/* ---- Purple system utility 191 ---- */
+.purple-tone-191 {
+    --purple-system-step: 191;
+}
+
+
+/* ---- Purple system utility 192 ---- */
+.purple-tone-192 {
+    --purple-system-step: 192;
+}
+
+
+/* ---- Purple system utility 193 ---- */
+.purple-tone-193 {
+    --purple-system-step: 193;
+}
+
+
+/* ---- Purple system utility 194 ---- */
+.purple-tone-194 {
+    --purple-system-step: 194;
+}
+
+
+/* ---- Purple system utility 195 ---- */
+.purple-tone-195 {
+    --purple-system-step: 195;
+}
+
+
+/* ---- Purple system utility 196 ---- */
+.purple-tone-196 {
+    --purple-system-step: 196;
+}
+
+
+/* ---- Purple system utility 197 ---- */
+.purple-tone-197 {
+    --purple-system-step: 197;
+}
+
+
+/* ---- Purple system utility 198 ---- */
+.purple-tone-198 {
+    --purple-system-step: 198;
+}
+
+
+/* ---- Purple system utility 199 ---- */
+.purple-tone-199 {
+    --purple-system-step: 199;
+}
+
+
+/* ---- Purple system utility 200 ---- */
+.purple-tone-200 {
+    --purple-system-step: 200;
+}
+
+
+/* ---- Purple system utility 201 ---- */
+.purple-tone-201 {
+    --purple-system-step: 201;
+}
+
+
+/* ---- Purple system utility 202 ---- */
+.purple-tone-202 {
+    --purple-system-step: 202;
+}
+
+
+/* ---- Purple system utility 203 ---- */
+.purple-tone-203 {
+    --purple-system-step: 203;
+}
+
+
+/* ---- Purple system utility 204 ---- */
+.purple-tone-204 {
+    --purple-system-step: 204;
+}
+
+
+/* ---- Purple system utility 205 ---- */
+.purple-tone-205 {
+    --purple-system-step: 205;
+}
+
+
+/* ---- Purple system utility 206 ---- */
+.purple-tone-206 {
+    --purple-system-step: 206;
+}
+
+
+/* ---- Purple system utility 207 ---- */
+.purple-tone-207 {
+    --purple-system-step: 207;
+}
+
+
+/* ---- Purple system utility 208 ---- */
+.purple-tone-208 {
+    --purple-system-step: 208;
+}
+
+
+/* ---- Purple system utility 209 ---- */
+.purple-tone-209 {
+    --purple-system-step: 209;
+}
+
+
+/* ---- Purple system utility 210 ---- */
+.purple-tone-210 {
+    --purple-system-step: 210;
+}
+
+
+/* ---- Purple system utility 211 ---- */
+.purple-tone-211 {
+    --purple-system-step: 211;
+}
+
+
+/* ---- Purple system utility 212 ---- */
+.purple-tone-212 {
+    --purple-system-step: 212;
+}
+
+
+/* ---- Purple system utility 213 ---- */
+.purple-tone-213 {
+    --purple-system-step: 213;
+}
+
+
+/* ---- Purple system utility 214 ---- */
+.purple-tone-214 {
+    --purple-system-step: 214;
+}
+
+
+/* ---- Purple system utility 215 ---- */
+.purple-tone-215 {
+    --purple-system-step: 215;
+}
+
+
+/* ---- Purple system utility 216 ---- */
+.purple-tone-216 {
+    --purple-system-step: 216;
+}
+
+
+/* ---- Purple system utility 217 ---- */
+.purple-tone-217 {
+    --purple-system-step: 217;
+}
+
+
+/* ---- Purple system utility 218 ---- */
+.purple-tone-218 {
+    --purple-system-step: 218;
+}
+
+
+/* ---- Purple system utility 219 ---- */
+.purple-tone-219 {
+    --purple-system-step: 219;
+}
+
+
+/* ---- Purple system utility 220 ---- */
+.purple-tone-220 {
+    --purple-system-step: 220;
+}
+
+
+/* ---- Purple system utility 221 ---- */
+.purple-tone-221 {
+    --purple-system-step: 221;
+}
+
+
+/* ---- Purple system utility 222 ---- */
+.purple-tone-222 {
+    --purple-system-step: 222;
+}
+
+
+/* ---- Purple system utility 223 ---- */
+.purple-tone-223 {
+    --purple-system-step: 223;
+}
+
+
+/* ---- Purple system utility 224 ---- */
+.purple-tone-224 {
+    --purple-system-step: 224;
+}
+
+
+/* ---- Purple system utility 225 ---- */
+.purple-tone-225 {
+    --purple-system-step: 225;
+}
+
+
+/* ---- Purple system utility 226 ---- */
+.purple-tone-226 {
+    --purple-system-step: 226;
+}
+
+
+/* ---- Purple system utility 227 ---- */
+.purple-tone-227 {
+    --purple-system-step: 227;
+}
+
+
+/* ---- Purple system utility 228 ---- */
+.purple-tone-228 {
+    --purple-system-step: 228;
+}
+
+
+/* ---- Purple system utility 229 ---- */
+.purple-tone-229 {
+    --purple-system-step: 229;
+}
+
+
+/* ---- Purple system utility 230 ---- */
+.purple-tone-230 {
+    --purple-system-step: 230;
+}
+
+
+/* ---- Purple system utility 231 ---- */
+.purple-tone-231 {
+    --purple-system-step: 231;
+}
+
+
+/* ---- Purple system utility 232 ---- */
+.purple-tone-232 {
+    --purple-system-step: 232;
+}
+
+
+/* ---- Purple system utility 233 ---- */
+.purple-tone-233 {
+    --purple-system-step: 233;
+}
+
+
+/* ---- Purple system utility 234 ---- */
+.purple-tone-234 {
+    --purple-system-step: 234;
+}
+
+
+/* ---- Purple system utility 235 ---- */
+.purple-tone-235 {
+    --purple-system-step: 235;
+}
+
+
+/* ---- Purple system utility 236 ---- */
+.purple-tone-236 {
+    --purple-system-step: 236;
+}
+
+
+/* ---- Purple system utility 237 ---- */
+.purple-tone-237 {
+    --purple-system-step: 237;
+}
+
+
+/* ---- Purple system utility 238 ---- */
+.purple-tone-238 {
+    --purple-system-step: 238;
+}
+
+
+/* ---- Purple system utility 239 ---- */
+.purple-tone-239 {
+    --purple-system-step: 239;
+}
+
+
+/* ---- Purple system utility 240 ---- */
+.purple-tone-240 {
+    --purple-system-step: 240;
+}
+
+
+/* ---- Purple system utility 241 ---- */
+.purple-tone-241 {
+    --purple-system-step: 241;
+}
+
+
+/* ---- Purple system utility 242 ---- */
+.purple-tone-242 {
+    --purple-system-step: 242;
+}
+
+
+/* ---- Purple system utility 243 ---- */
+.purple-tone-243 {
+    --purple-system-step: 243;
+}
+
+
+/* ---- Purple system utility 244 ---- */
+.purple-tone-244 {
+    --purple-system-step: 244;
+}
+
+
+/* ---- Purple system utility 245 ---- */
+.purple-tone-245 {
+    --purple-system-step: 245;
+}
+
+
+/* ---- Purple system utility 246 ---- */
+.purple-tone-246 {
+    --purple-system-step: 246;
+}
+
+
+/* ---- Purple system utility 247 ---- */
+.purple-tone-247 {
+    --purple-system-step: 247;
+}
+
+
+/* ---- Purple system utility 248 ---- */
+.purple-tone-248 {
+    --purple-system-step: 248;
+}
+
+
+/* ---- Purple system utility 249 ---- */
+.purple-tone-249 {
+    --purple-system-step: 249;
+}
+
+
+/* ---- Purple system utility 250 ---- */
+.purple-tone-250 {
+    --purple-system-step: 250;
+}
+
+
+/* ---- Purple system utility 251 ---- */
+.purple-tone-251 {
+    --purple-system-step: 251;
+}
+
+
+/* ---- Purple system utility 252 ---- */
+.purple-tone-252 {
+    --purple-system-step: 252;
+}
+
+
+/* ---- Purple system utility 253 ---- */
+.purple-tone-253 {
+    --purple-system-step: 253;
+}
+
+
+/* ---- Purple system utility 254 ---- */
+.purple-tone-254 {
+    --purple-system-step: 254;
+}
+
+
+/* ---- Purple system utility 255 ---- */
+.purple-tone-255 {
+    --purple-system-step: 255;
+}
+
+
+/* ---- Purple system utility 256 ---- */
+.purple-tone-256 {
+    --purple-system-step: 256;
+}
+
+
+/* ---- Purple system utility 257 ---- */
+.purple-tone-257 {
+    --purple-system-step: 257;
+}
+
+
+/* ---- Purple system utility 258 ---- */
+.purple-tone-258 {
+    --purple-system-step: 258;
+}
+
+
+/* ---- Purple system utility 259 ---- */
+.purple-tone-259 {
+    --purple-system-step: 259;
+}
+
+
+/* ---- Purple system utility 260 ---- */
+.purple-tone-260 {
+    --purple-system-step: 260;
+}
+
+
+/* ---- Purple system utility 261 ---- */
+.purple-tone-261 {
+    --purple-system-step: 261;
+}
+
+
+/* ---- Purple system utility 262 ---- */
+.purple-tone-262 {
+    --purple-system-step: 262;
+}
+
+
+/* ---- Purple system utility 263 ---- */
+.purple-tone-263 {
+    --purple-system-step: 263;
+}
+
+
+/* ---- Purple system utility 264 ---- */
+.purple-tone-264 {
+    --purple-system-step: 264;
+}
+
+
+/* ---- Purple system utility 265 ---- */
+.purple-tone-265 {
+    --purple-system-step: 265;
+}
+
+
+/* ---- Purple system utility 266 ---- */
+.purple-tone-266 {
+    --purple-system-step: 266;
+}
+
+
+/* ---- Purple system utility 267 ---- */
+.purple-tone-267 {
+    --purple-system-step: 267;
+}
+
+
+/* ---- Purple system utility 268 ---- */
+.purple-tone-268 {
+    --purple-system-step: 268;
+}
+
+
+/* ---- Purple system utility 269 ---- */
+.purple-tone-269 {
+    --purple-system-step: 269;
+}
+
+
+/* ---- Purple system utility 270 ---- */
+.purple-tone-270 {
+    --purple-system-step: 270;
+}
+
+
+/* ---- Purple system utility 271 ---- */
+.purple-tone-271 {
+    --purple-system-step: 271;
+}
+
+
+/* ---- Purple system utility 272 ---- */
+.purple-tone-272 {
+    --purple-system-step: 272;
+}
+
+
+/* ---- Purple system utility 273 ---- */
+.purple-tone-273 {
+    --purple-system-step: 273;
+}
+
+
+/* ---- Purple system utility 274 ---- */
+.purple-tone-274 {
+    --purple-system-step: 274;
+}
+
+
+/* ---- Purple system utility 275 ---- */
+.purple-tone-275 {
+    --purple-system-step: 275;
+}
+
+
+/* ---- Purple system utility 276 ---- */
+.purple-tone-276 {
+    --purple-system-step: 276;
+}
+
+
+/* ---- Purple system utility 277 ---- */
+.purple-tone-277 {
+    --purple-system-step: 277;
+}
+
+
+/* ---- Purple system utility 278 ---- */
+.purple-tone-278 {
+    --purple-system-step: 278;
+}
+
+
+/* ---- Purple system utility 279 ---- */
+.purple-tone-279 {
+    --purple-system-step: 279;
+}
+
+
+/* ---- Purple system utility 280 ---- */
+.purple-tone-280 {
+    --purple-system-step: 280;
+}
+
+
+/* ---- Purple system utility 281 ---- */
+.purple-tone-281 {
+    --purple-system-step: 281;
+}
+
+
+/* ---- Purple system utility 282 ---- */
+.purple-tone-282 {
+    --purple-system-step: 282;
+}
+
+
+/* ---- Purple system utility 283 ---- */
+.purple-tone-283 {
+    --purple-system-step: 283;
+}
+
+
+/* ---- Purple system utility 284 ---- */
+.purple-tone-284 {
+    --purple-system-step: 284;
+}
+
+
+/* ---- Purple system utility 285 ---- */
+.purple-tone-285 {
+    --purple-system-step: 285;
+}
+
+
+/* ---- Purple system utility 286 ---- */
+.purple-tone-286 {
+    --purple-system-step: 286;
+}
+
+
+/* ---- Purple system utility 287 ---- */
+.purple-tone-287 {
+    --purple-system-step: 287;
+}
+
+
+/* ---- Purple system utility 288 ---- */
+.purple-tone-288 {
+    --purple-system-step: 288;
+}
+
+
+/* ---- Purple system utility 289 ---- */
+.purple-tone-289 {
+    --purple-system-step: 289;
+}
+
+
+/* ---- Purple system utility 290 ---- */
+.purple-tone-290 {
+    --purple-system-step: 290;
+}
+
+
+/* ---- Purple system utility 291 ---- */
+.purple-tone-291 {
+    --purple-system-step: 291;
+}
+
+
+/* ---- Purple system utility 292 ---- */
+.purple-tone-292 {
+    --purple-system-step: 292;
+}
+
+
+/* ---- Purple system utility 293 ---- */
+.purple-tone-293 {
+    --purple-system-step: 293;
+}
+
+
+/* ---- Purple system utility 294 ---- */
+.purple-tone-294 {
+    --purple-system-step: 294;
+}
+
+
+/* ---- Purple system utility 295 ---- */
+.purple-tone-295 {
+    --purple-system-step: 295;
+}
+
+
+/* ---- Purple system utility 296 ---- */
+.purple-tone-296 {
+    --purple-system-step: 296;
+}
+
+
+/* ---- Purple system utility 297 ---- */
+.purple-tone-297 {
+    --purple-system-step: 297;
+}
+
+
+/* ---- Purple system utility 298 ---- */
+.purple-tone-298 {
+    --purple-system-step: 298;
+}
+
+
+/* ---- Purple system utility 299 ---- */
+.purple-tone-299 {
+    --purple-system-step: 299;
+}
+
+
+/* ---- Purple system utility 300 ---- */
+.purple-tone-300 {
+    --purple-system-step: 300;
+}
+
+
+/* ---- Purple system utility 301 ---- */
+.purple-tone-301 {
+    --purple-system-step: 301;
+}
+
+
+/* ---- Purple system utility 302 ---- */
+.purple-tone-302 {
+    --purple-system-step: 302;
+}
+
+
+/* ---- Purple system utility 303 ---- */
+.purple-tone-303 {
+    --purple-system-step: 303;
+}
+
+
+/* ---- Purple system utility 304 ---- */
+.purple-tone-304 {
+    --purple-system-step: 304;
+}
+
+
+/* ---- Purple system utility 305 ---- */
+.purple-tone-305 {
+    --purple-system-step: 305;
+}
+
+
+/* ---- Purple system utility 306 ---- */
+.purple-tone-306 {
+    --purple-system-step: 306;
+}
+
+
+/* ---- Purple system utility 307 ---- */
+.purple-tone-307 {
+    --purple-system-step: 307;
+}
+
+
+/* ---- Purple system utility 308 ---- */
+.purple-tone-308 {
+    --purple-system-step: 308;
+}
+
+
+/* ---- Purple system utility 309 ---- */
+.purple-tone-309 {
+    --purple-system-step: 309;
+}
+
+
+/* ---- Purple system utility 310 ---- */
+.purple-tone-310 {
+    --purple-system-step: 310;
+}
+
+
+/* ---- Purple system utility 311 ---- */
+.purple-tone-311 {
+    --purple-system-step: 311;
+}
+
+
+/* ---- Purple system utility 312 ---- */
+.purple-tone-312 {
+    --purple-system-step: 312;
+}
+
+
+/* ---- Purple system utility 313 ---- */
+.purple-tone-313 {
+    --purple-system-step: 313;
+}
+
+
+/* ---- Purple system utility 314 ---- */
+.purple-tone-314 {
+    --purple-system-step: 314;
+}
+
+
+/* ---- Purple system utility 315 ---- */
+.purple-tone-315 {
+    --purple-system-step: 315;
+}
+
+
+/* ---- Purple system utility 316 ---- */
+.purple-tone-316 {
+    --purple-system-step: 316;
+}
+
+
+/* ---- Purple system utility 317 ---- */
+.purple-tone-317 {
+    --purple-system-step: 317;
+}
+
+
+/* ---- Purple system utility 318 ---- */
+.purple-tone-318 {
+    --purple-system-step: 318;
+}
+
+
+/* ---- Purple system utility 319 ---- */
+.purple-tone-319 {
+    --purple-system-step: 319;
+}
+
+
+/* ---- Purple system utility 320 ---- */
+.purple-tone-320 {
+    --purple-system-step: 320;
+}
+
+
+/* ---- Purple system utility 321 ---- */
+.purple-tone-321 {
+    --purple-system-step: 321;
+}
+
+
+/* ---- Purple system utility 322 ---- */
+.purple-tone-322 {
+    --purple-system-step: 322;
+}
+
+
+/* ---- Purple system utility 323 ---- */
+.purple-tone-323 {
+    --purple-system-step: 323;
+}
+
+
+/* ---- Purple system utility 324 ---- */
+.purple-tone-324 {
+    --purple-system-step: 324;
+}
+
+
+/* ---- Purple system utility 325 ---- */
+.purple-tone-325 {
+    --purple-system-step: 325;
+}
+
+
+/* ---- Purple system utility 326 ---- */
+.purple-tone-326 {
+    --purple-system-step: 326;
+}
+
+
+/* ---- Purple system utility 327 ---- */
+.purple-tone-327 {
+    --purple-system-step: 327;
+}
+
+
+/* ---- Purple system utility 328 ---- */
+.purple-tone-328 {
+    --purple-system-step: 328;
+}
+
+
+/* ---- Purple system utility 329 ---- */
+.purple-tone-329 {
+    --purple-system-step: 329;
+}
+
+
+/* ---- Purple system utility 330 ---- */
+.purple-tone-330 {
+    --purple-system-step: 330;
+}
+
+
+/* ---- Purple system utility 331 ---- */
+.purple-tone-331 {
+    --purple-system-step: 331;
+}
+
+
+/* ---- Purple system utility 332 ---- */
+.purple-tone-332 {
+    --purple-system-step: 332;
+}
+
+
+/* ---- Purple system utility 333 ---- */
+.purple-tone-333 {
+    --purple-system-step: 333;
+}
+
+
+/* ---- Purple system utility 334 ---- */
+.purple-tone-334 {
+    --purple-system-step: 334;
+}
+
+
+/* ---- Purple system utility 335 ---- */
+.purple-tone-335 {
+    --purple-system-step: 335;
+}
+
+
+/* ---- Purple system utility 336 ---- */
+.purple-tone-336 {
+    --purple-system-step: 336;
+}
+
+
+/* ---- Purple system utility 337 ---- */
+.purple-tone-337 {
+    --purple-system-step: 337;
+}
+
+
+/* ---- Purple system utility 338 ---- */
+.purple-tone-338 {
+    --purple-system-step: 338;
+}
+
+
+/* ---- Purple system utility 339 ---- */
+.purple-tone-339 {
+    --purple-system-step: 339;
+}
+
+
+/* ---- Purple system utility 340 ---- */
+.purple-tone-340 {
+    --purple-system-step: 340;
+}
+
+
+/* ---- Purple system utility 341 ---- */
+.purple-tone-341 {
+    --purple-system-step: 341;
+}
+
+
+/* ---- Purple system utility 342 ---- */
+.purple-tone-342 {
+    --purple-system-step: 342;
+}
+
+
+/* ---- Purple system utility 343 ---- */
+.purple-tone-343 {
+    --purple-system-step: 343;
+}
+
+
+/* ---- Purple system utility 344 ---- */
+.purple-tone-344 {
+    --purple-system-step: 344;
+}
+
+
+/* ---- Purple system utility 345 ---- */
+.purple-tone-345 {
+    --purple-system-step: 345;
+}
+
+
+/* ---- Purple system utility 346 ---- */
+.purple-tone-346 {
+    --purple-system-step: 346;
+}
+
+
+/* ---- Purple system utility 347 ---- */
+.purple-tone-347 {
+    --purple-system-step: 347;
+}
+
+
+/* ---- Purple system utility 348 ---- */
+.purple-tone-348 {
+    --purple-system-step: 348;
+}
+
+
+/* ---- Purple system utility 349 ---- */
+.purple-tone-349 {
+    --purple-system-step: 349;
+}
+
+
+/* ---- Purple system utility 350 ---- */
+.purple-tone-350 {
+    --purple-system-step: 350;
+}
+
+
+/* ---- Purple system utility 351 ---- */
+.purple-tone-351 {
+    --purple-system-step: 351;
+}
+
+
+/* ---- Purple system utility 352 ---- */
+.purple-tone-352 {
+    --purple-system-step: 352;
+}
+
+
+/* ---- Purple system utility 353 ---- */
+.purple-tone-353 {
+    --purple-system-step: 353;
+}
+
+
+/* ---- Purple system utility 354 ---- */
+.purple-tone-354 {
+    --purple-system-step: 354;
+}
+
+
+/* ---- Purple system utility 355 ---- */
+.purple-tone-355 {
+    --purple-system-step: 355;
+}
+
+
+/* ---- Purple system utility 356 ---- */
+.purple-tone-356 {
+    --purple-system-step: 356;
+}
+
+
+/* ---- Purple system utility 357 ---- */
+.purple-tone-357 {
+    --purple-system-step: 357;
+}
+
+
+/* ---- Purple system utility 358 ---- */
+.purple-tone-358 {
+    --purple-system-step: 358;
+}
+
+
+/* ---- Purple system utility 359 ---- */
+.purple-tone-359 {
+    --purple-system-step: 359;
+}
+
+
+/* ---- Purple system utility 360 ---- */
+.purple-tone-360 {
+    --purple-system-step: 360;
+}
+
+
+/* ---- Purple system utility 361 ---- */
+.purple-tone-361 {
+    --purple-system-step: 361;
+}
+
+
+/* ---- Purple system utility 362 ---- */
+.purple-tone-362 {
+    --purple-system-step: 362;
+}
+
+
+/* ---- Purple system utility 363 ---- */
+.purple-tone-363 {
+    --purple-system-step: 363;
+}
+
+
+/* ---- Purple system utility 364 ---- */
+.purple-tone-364 {
+    --purple-system-step: 364;
+}
+
+
+/* ---- Purple system utility 365 ---- */
+.purple-tone-365 {
+    --purple-system-step: 365;
+}
+
+
+/* ---- Purple system utility 366 ---- */
+.purple-tone-366 {
+    --purple-system-step: 366;
+}
+
+
+/* ---- Purple system utility 367 ---- */
+.purple-tone-367 {
+    --purple-system-step: 367;
+}
+
+
+/* ---- Purple system utility 368 ---- */
+.purple-tone-368 {
+    --purple-system-step: 368;
+}
+
+
+/* ---- Purple system utility 369 ---- */
+.purple-tone-369 {
+    --purple-system-step: 369;
+}
+
+
+/* ---- Purple system utility 370 ---- */
+.purple-tone-370 {
+    --purple-system-step: 370;
+}
+
+
+/* ---- Purple system utility 371 ---- */
+.purple-tone-371 {
+    --purple-system-step: 371;
+}
+
+
+/* ---- Purple system utility 372 ---- */
+.purple-tone-372 {
+    --purple-system-step: 372;
+}
+
+
+/* ---- Purple system utility 373 ---- */
+.purple-tone-373 {
+    --purple-system-step: 373;
+}
+
+
+/* ---- Purple system utility 374 ---- */
+.purple-tone-374 {
+    --purple-system-step: 374;
+}
+
+
+/* ---- Purple system utility 375 ---- */
+.purple-tone-375 {
+    --purple-system-step: 375;
+}
+
+
+/* ---- Purple system utility 376 ---- */
+.purple-tone-376 {
+    --purple-system-step: 376;
+}
+
+
+/* ---- Purple system utility 377 ---- */
+.purple-tone-377 {
+    --purple-system-step: 377;
+}
+
+
+/* ---- Purple system utility 378 ---- */
+.purple-tone-378 {
+    --purple-system-step: 378;
+}
+
+
+/* ---- Purple system utility 379 ---- */
+.purple-tone-379 {
+    --purple-system-step: 379;
+}
+
+
+/* ---- Purple system utility 380 ---- */
+.purple-tone-380 {
+    --purple-system-step: 380;
+}
+
+
+/* ---- Purple system utility 381 ---- */
+.purple-tone-381 {
+    --purple-system-step: 381;
+}
+
+
+/* ---- Purple system utility 382 ---- */
+.purple-tone-382 {
+    --purple-system-step: 382;
+}
+
+
+/* ---- Purple system utility 383 ---- */
+.purple-tone-383 {
+    --purple-system-step: 383;
+}
+
+
+/* ---- Purple system utility 384 ---- */
+.purple-tone-384 {
+    --purple-system-step: 384;
+}
+
+
+/* ---- Purple system utility 385 ---- */
+.purple-tone-385 {
+    --purple-system-step: 385;
+}
+
+
+/* ---- Purple system utility 386 ---- */
+.purple-tone-386 {
+    --purple-system-step: 386;
+}
+
+
+/* ---- Purple system utility 387 ---- */
+.purple-tone-387 {
+    --purple-system-step: 387;
+}
+
+
+/* ---- Purple system utility 388 ---- */
+.purple-tone-388 {
+    --purple-system-step: 388;
+}
+
+
+/* ---- Purple system utility 389 ---- */
+.purple-tone-389 {
+    --purple-system-step: 389;
+}
+
+
+/* ---- Purple system utility 390 ---- */
+.purple-tone-390 {
+    --purple-system-step: 390;
+}
+
+
+/* ---- Purple system utility 391 ---- */
+.purple-tone-391 {
+    --purple-system-step: 391;
+}
+
+
+/* ---- Purple system utility 392 ---- */
+.purple-tone-392 {
+    --purple-system-step: 392;
+}
+
+
+/* ---- Purple system utility 393 ---- */
+.purple-tone-393 {
+    --purple-system-step: 393;
+}
+
+
+/* ---- Purple system utility 394 ---- */
+.purple-tone-394 {
+    --purple-system-step: 394;
+}
+
+
+/* ---- Purple system utility 395 ---- */
+.purple-tone-395 {
+    --purple-system-step: 395;
+}
+
+
+/* ---- Purple system utility 396 ---- */
+.purple-tone-396 {
+    --purple-system-step: 396;
+}
+
+
+/* ---- Purple system utility 397 ---- */
+.purple-tone-397 {
+    --purple-system-step: 397;
+}
+
+
+/* ---- Purple system utility 398 ---- */
+.purple-tone-398 {
+    --purple-system-step: 398;
+}
+
+
+/* ---- Purple system utility 399 ---- */
+.purple-tone-399 {
+    --purple-system-step: 399;
+}
+
+
+/* ---- Purple system utility 400 ---- */
+.purple-tone-400 {
+    --purple-system-step: 400;
+}
+
+
+/* ---- Purple system utility 401 ---- */
+.purple-tone-401 {
+    --purple-system-step: 401;
+}
+
+
+/* ---- Purple system utility 402 ---- */
+.purple-tone-402 {
+    --purple-system-step: 402;
+}
+
+
+/* ---- Purple system utility 403 ---- */
+.purple-tone-403 {
+    --purple-system-step: 403;
+}
+
+
+/* ---- Purple system utility 404 ---- */
+.purple-tone-404 {
+    --purple-system-step: 404;
+}
+
+
+/* ---- Purple system utility 405 ---- */
+.purple-tone-405 {
+    --purple-system-step: 405;
+}
+
+
+/* ---- Purple system utility 406 ---- */
+.purple-tone-406 {
+    --purple-system-step: 406;
+}
+
+
+/* ---- Purple system utility 407 ---- */
+.purple-tone-407 {
+    --purple-system-step: 407;
+}
+
+
+/* ---- Purple system utility 408 ---- */
+.purple-tone-408 {
+    --purple-system-step: 408;
+}
+
+
+/* ---- Purple system utility 409 ---- */
+.purple-tone-409 {
+    --purple-system-step: 409;
+}
+
+
+/* ---- Purple system utility 410 ---- */
+.purple-tone-410 {
+    --purple-system-step: 410;
+}
+
+
+/* ---- Purple system utility 411 ---- */
+.purple-tone-411 {
+    --purple-system-step: 411;
+}
+
+
+/* ---- Purple system utility 412 ---- */
+.purple-tone-412 {
+    --purple-system-step: 412;
+}
+
+
+/* ---- Purple system utility 413 ---- */
+.purple-tone-413 {
+    --purple-system-step: 413;
+}
+
+
+/* ---- Purple system utility 414 ---- */
+.purple-tone-414 {
+    --purple-system-step: 414;
+}
+
+
+/* ---- Purple system utility 415 ---- */
+.purple-tone-415 {
+    --purple-system-step: 415;
+}
+
+
+/* ---- Purple system utility 416 ---- */
+.purple-tone-416 {
+    --purple-system-step: 416;
+}
+
+
+/* ---- Purple system utility 417 ---- */
+.purple-tone-417 {
+    --purple-system-step: 417;
+}
+
+
+/* ---- Purple system utility 418 ---- */
+.purple-tone-418 {
+    --purple-system-step: 418;
+}
+
+
+/* ---- Purple system utility 419 ---- */
+.purple-tone-419 {
+    --purple-system-step: 419;
+}
+
+
+/* ---- Purple system utility 420 ---- */
+.purple-tone-420 {
+    --purple-system-step: 420;
+}
+
+
+/* ---- Purple system utility 421 ---- */
+.purple-tone-421 {
+    --purple-system-step: 421;
+}
+
+
+/* ---- Purple system utility 422 ---- */
+.purple-tone-422 {
+    --purple-system-step: 422;
+}
+
+
+/* ---- Purple system utility 423 ---- */
+.purple-tone-423 {
+    --purple-system-step: 423;
+}
+
+
+/* ---- Purple system utility 424 ---- */
+.purple-tone-424 {
+    --purple-system-step: 424;
+}
+
+
+/* ---- Purple system utility 425 ---- */
+.purple-tone-425 {
+    --purple-system-step: 425;
+}
+
+
+/* ---- Purple system utility 426 ---- */
+.purple-tone-426 {
+    --purple-system-step: 426;
+}
+
+
+/* ---- Purple system utility 427 ---- */
+.purple-tone-427 {
+    --purple-system-step: 427;
+}
+
+
+/* ---- Purple system utility 428 ---- */
+.purple-tone-428 {
+    --purple-system-step: 428;
+}
+
+
+/* ---- Purple system utility 429 ---- */
+.purple-tone-429 {
+    --purple-system-step: 429;
+}
+
+
+/* ---- Purple system utility 430 ---- */
+.purple-tone-430 {
+    --purple-system-step: 430;
+}
+
+
+/* ---- Purple system utility 431 ---- */
+.purple-tone-431 {
+    --purple-system-step: 431;
+}
+
+
+/* ---- Purple system utility 432 ---- */
+.purple-tone-432 {
+    --purple-system-step: 432;
+}
+
+
+/* ---- Purple system utility 433 ---- */
+.purple-tone-433 {
+    --purple-system-step: 433;
+}
+
+
+/* ---- Purple system utility 434 ---- */
+.purple-tone-434 {
+    --purple-system-step: 434;
+}
+
+
+/* ---- Purple system utility 435 ---- */
+.purple-tone-435 {
+    --purple-system-step: 435;
+}
+
+
+/* ---- Purple system utility 436 ---- */
+.purple-tone-436 {
+    --purple-system-step: 436;
+}
+
+
+/* ---- Purple system utility 437 ---- */
+.purple-tone-437 {
+    --purple-system-step: 437;
+}
+
+
+/* ---- Purple system utility 438 ---- */
+.purple-tone-438 {
+    --purple-system-step: 438;
+}
+
+
+/* ---- Purple system utility 439 ---- */
+.purple-tone-439 {
+    --purple-system-step: 439;
+}
+
+
+/* ---- Purple system utility 440 ---- */
+.purple-tone-440 {
+    --purple-system-step: 440;
+}
+
+
+/* ---- Purple system utility 441 ---- */
+.purple-tone-441 {
+    --purple-system-step: 441;
+}
+
+
+/* ---- Purple system utility 442 ---- */
+.purple-tone-442 {
+    --purple-system-step: 442;
+}
+
+
+/* ---- Purple system utility 443 ---- */
+.purple-tone-443 {
+    --purple-system-step: 443;
+}
+
+
+/* ---- Purple system utility 444 ---- */
+.purple-tone-444 {
+    --purple-system-step: 444;
+}
+
+
+/* ---- Purple system utility 445 ---- */
+.purple-tone-445 {
+    --purple-system-step: 445;
+}
+
+
+/* ---- Purple system utility 446 ---- */
+.purple-tone-446 {
+    --purple-system-step: 446;
+}
+
+
+/* ---- Purple system utility 447 ---- */
+.purple-tone-447 {
+    --purple-system-step: 447;
+}
+
+
+/* ---- Purple system utility 448 ---- */
+.purple-tone-448 {
+    --purple-system-step: 448;
+}
+
+
+/* ---- Purple system utility 449 ---- */
+.purple-tone-449 {
+    --purple-system-step: 449;
+}
+
+
+/* ---- Purple system utility 450 ---- */
+.purple-tone-450 {
+    --purple-system-step: 450;
+}
+
+
+/* ---- Purple system utility 451 ---- */
+.purple-tone-451 {
+    --purple-system-step: 451;
+}
+
+
+/* ---- Purple system utility 452 ---- */
+.purple-tone-452 {
+    --purple-system-step: 452;
+}
+
+
+/* ---- Purple system utility 453 ---- */
+.purple-tone-453 {
+    --purple-system-step: 453;
+}
+
+
+/* ---- Purple system utility 454 ---- */
+.purple-tone-454 {
+    --purple-system-step: 454;
+}
+
+
+/* ---- Purple system utility 455 ---- */
+.purple-tone-455 {
+    --purple-system-step: 455;
+}
+
+
+/* ---- Purple system utility 456 ---- */
+.purple-tone-456 {
+    --purple-system-step: 456;
+}
+
+
+/* ---- Purple system utility 457 ---- */
+.purple-tone-457 {
+    --purple-system-step: 457;
+}
+
+
+/* ---- Purple system utility 458 ---- */
+.purple-tone-458 {
+    --purple-system-step: 458;
+}
+
+
+/* ---- Purple system utility 459 ---- */
+.purple-tone-459 {
+    --purple-system-step: 459;
+}
+
+
+/* ---- Purple system utility 460 ---- */
+.purple-tone-460 {
+    --purple-system-step: 460;
+}
+
+
+/* ---- Purple system utility 461 ---- */
+.purple-tone-461 {
+    --purple-system-step: 461;
+}
+
+
+/* ---- Purple system utility 462 ---- */
+.purple-tone-462 {
+    --purple-system-step: 462;
+}
+
+
+/* ---- Purple system utility 463 ---- */
+.purple-tone-463 {
+    --purple-system-step: 463;
+}
+
+
+/* ---- Purple system utility 464 ---- */
+.purple-tone-464 {
+    --purple-system-step: 464;
+}
+
+
+/* ---- Purple system utility 465 ---- */
+.purple-tone-465 {
+    --purple-system-step: 465;
+}
+
+
+/* ---- Purple system utility 466 ---- */
+.purple-tone-466 {
+    --purple-system-step: 466;
+}
+
+
+/* ---- Purple system utility 467 ---- */
+.purple-tone-467 {
+    --purple-system-step: 467;
+}
+
+
+/* ---- Purple system utility 468 ---- */
+.purple-tone-468 {
+    --purple-system-step: 468;
+}
+
+
+/* ---- Purple system utility 469 ---- */
+.purple-tone-469 {
+    --purple-system-step: 469;
+}
+
+
+/* ---- Purple system utility 470 ---- */
+.purple-tone-470 {
+    --purple-system-step: 470;
+}
+
+
+/* ---- Purple system utility 471 ---- */
+.purple-tone-471 {
+    --purple-system-step: 471;
+}
+
+
+/* ---- Purple system utility 472 ---- */
+.purple-tone-472 {
+    --purple-system-step: 472;
+}
+
+
+/* ---- Purple system utility 473 ---- */
+.purple-tone-473 {
+    --purple-system-step: 473;
+}
+
+
+/* ---- Purple system utility 474 ---- */
+.purple-tone-474 {
+    --purple-system-step: 474;
+}
+
+
+/* ---- Purple system utility 475 ---- */
+.purple-tone-475 {
+    --purple-system-step: 475;
+}
+
+
+/* ---- Purple system utility 476 ---- */
+.purple-tone-476 {
+    --purple-system-step: 476;
+}
+
+
+/* ---- Purple system utility 477 ---- */
+.purple-tone-477 {
+    --purple-system-step: 477;
+}
+
+
+/* ---- Purple system utility 478 ---- */
+.purple-tone-478 {
+    --purple-system-step: 478;
+}
+
+
+/* ---- Purple system utility 479 ---- */
+.purple-tone-479 {
+    --purple-system-step: 479;
+}
+
+
+/* ---- Purple system utility 480 ---- */
+.purple-tone-480 {
+    --purple-system-step: 480;
+}
+
+
+/* ---- Purple system utility 481 ---- */
+.purple-tone-481 {
+    --purple-system-step: 481;
+}
+
+
+/* ---- Purple system utility 482 ---- */
+.purple-tone-482 {
+    --purple-system-step: 482;
+}
+
+
+/* ---- Purple system utility 483 ---- */
+.purple-tone-483 {
+    --purple-system-step: 483;
+}
+
+
+/* ---- Purple system utility 484 ---- */
+.purple-tone-484 {
+    --purple-system-step: 484;
+}
+
+
+/* ---- Purple system utility 485 ---- */
+.purple-tone-485 {
+    --purple-system-step: 485;
+}
+
+
+/* ---- Purple system utility 486 ---- */
+.purple-tone-486 {
+    --purple-system-step: 486;
+}
+
+
+/* ---- Purple system utility 487 ---- */
+.purple-tone-487 {
+    --purple-system-step: 487;
+}
+
+
+/* ---- Purple system utility 488 ---- */
+.purple-tone-488 {
+    --purple-system-step: 488;
+}
+
+
+/* ---- Purple system utility 489 ---- */
+.purple-tone-489 {
+    --purple-system-step: 489;
+}
+
+
+/* ---- Purple system utility 490 ---- */
+.purple-tone-490 {
+    --purple-system-step: 490;
+}
+
+
+/* ---- Purple system utility 491 ---- */
+.purple-tone-491 {
+    --purple-system-step: 491;
+}
+
+
+/* ---- Purple system utility 492 ---- */
+.purple-tone-492 {
+    --purple-system-step: 492;
+}
+
+
+/* ---- Purple system utility 493 ---- */
+.purple-tone-493 {
+    --purple-system-step: 493;
+}
+
+
+/* ---- Purple system utility 494 ---- */
+.purple-tone-494 {
+    --purple-system-step: 494;
+}
+
+
+/* ---- Purple system utility 495 ---- */
+.purple-tone-495 {
+    --purple-system-step: 495;
+}
+
+
+/* ---- Purple system utility 496 ---- */
+.purple-tone-496 {
+    --purple-system-step: 496;
+}
+
+
+/* ---- Purple system utility 497 ---- */
+.purple-tone-497 {
+    --purple-system-step: 497;
+}
+
+
+/* ---- Purple system utility 498 ---- */
+.purple-tone-498 {
+    --purple-system-step: 498;
+}
+
+
+/* ---- Purple system utility 499 ---- */
+.purple-tone-499 {
+    --purple-system-step: 499;
+}
+
+
+/* ---- Purple system utility 500 ---- */
+.purple-tone-500 {
+    --purple-system-step: 500;
+}
+
+
+/* ---- Purple system utility 501 ---- */
+.purple-tone-501 {
+    --purple-system-step: 501;
+}
+
+
+/* ---- Purple system utility 502 ---- */
+.purple-tone-502 {
+    --purple-system-step: 502;
+}
+
+
+/* ---- Purple system utility 503 ---- */
+.purple-tone-503 {
+    --purple-system-step: 503;
+}
+
+
+/* ---- Purple system utility 504 ---- */
+.purple-tone-504 {
+    --purple-system-step: 504;
+}
+
+
+/* ---- Purple system utility 505 ---- */
+.purple-tone-505 {
+    --purple-system-step: 505;
+}
+
+
+/* ---- Purple system utility 506 ---- */
+.purple-tone-506 {
+    --purple-system-step: 506;
+}
+
+
+/* ---- Purple system utility 507 ---- */
+.purple-tone-507 {
+    --purple-system-step: 507;
+}
+
+
+/* ---- Purple system utility 508 ---- */
+.purple-tone-508 {
+    --purple-system-step: 508;
+}
+
+
+/* ---- Purple system utility 509 ---- */
+.purple-tone-509 {
+    --purple-system-step: 509;
+}
+
+
+/* ---- Purple system utility 510 ---- */
+.purple-tone-510 {
+    --purple-system-step: 510;
+}
+
+
+/* ---- Purple system utility 511 ---- */
+.purple-tone-511 {
+    --purple-system-step: 511;
+}
+
+
+/* ---- Purple system utility 512 ---- */
+.purple-tone-512 {
+    --purple-system-step: 512;
+}
+
+
+/* ---- Purple system utility 513 ---- */
+.purple-tone-513 {
+    --purple-system-step: 513;
+}
+
+
+/* ---- Purple system utility 514 ---- */
+.purple-tone-514 {
+    --purple-system-step: 514;
+}
+
+
+/* ---- Purple system utility 515 ---- */
+.purple-tone-515 {
+    --purple-system-step: 515;
+}
+
+
+/* ---- Purple system utility 516 ---- */
+.purple-tone-516 {
+    --purple-system-step: 516;
+}
+
+
+/* ---- Purple system utility 517 ---- */
+.purple-tone-517 {
+    --purple-system-step: 517;
+}
+
+
+/* ---- Purple system utility 518 ---- */
+.purple-tone-518 {
+    --purple-system-step: 518;
+}
+
+
+/* ---- Purple system utility 519 ---- */
+.purple-tone-519 {
+    --purple-system-step: 519;
+}
+
+
+/* =========================================================
+   OPTIONAL UTILITY HELPERS
+========================================================= */
+
+.purple-border {
+    border-color: var(--border);
+}
+
+.purple-surface {
+    background: var(--surface-purple);
+}
+
+.purple-text {
+    color: var(--primary);
+}
+
+.purple-dark-text {
+    color: var(--primary-dark);
+}
+
+.purple-shadow {
+    box-shadow: var(--shadow-md);
+}
+
+.soft-glow {
+    box-shadow: 0 0 55px rgba(124,58,237,.13);
+}
+
+.no-select {
+    user-select: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#predict {
+    scroll-margin-top: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.prediction-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+/* ================================
+   FORCE PREDICTION FORM VISIBILITY
+================================ */
+
+.prediction-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+#predictionForm {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+.form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 21px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.form-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 30 !important;
+}
+
+.field {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.field label {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+.field input,
+.field select {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 50 !important;
+    pointer-events: auto !important;
+}
+
+.two-column {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.analyze-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 50 !important;
+    pointer-events: auto !important;
+}
+
+@media (max-width: 700px) {
+    .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr !important;
+    }
+}

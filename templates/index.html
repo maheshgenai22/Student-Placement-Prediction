@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        PlacementAI | Student Placement Prediction
+    </title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     BACKGROUND
+========================================= -->
+
+<div class="page-glow glow-one"></div>
+<div class="page-glow glow-two"></div>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- BRAND -->
+
+        <a
+            href="#home"
+            class="brand"
+        >
+
+            <div class="brand-icon">
+                <span>✦</span>
+            </div>
+
+            <div>
+
+                <h2>
+                    Placement<span>AI</span>
+                </h2>
+
+                <small>
+                    Smarter Predictions. Brighter Futures.
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-links">
+
+            <a
+                href="#home"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#predict">
+                Predict
+            </a>
+
+            <a href="#analytics">
+                Analytics
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+
+        <!-- STATUS -->
+
+        <div class="model-status">
+
+            <span></span>
+
+            AI Model Online
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-container">
+
+
+        <!-- HERO TEXT -->
+
+        <div class="hero-content">
+
+
+            <div class="eyebrow">
+
+                <span>✦</span>
+
+                AI-POWERED
+
+            </div>
+
+
+            <h1>
+
+                Student Placement
+
+                <span>
+                    Prediction
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Predict your placement probability
+                using Machine Learning. Analyze your
+                academic performance, skills and
+                career profile.
+
+            </p>
+
+
+            <a
+                href="#predict"
+                class="primary-btn hero-btn"
+            >
+
+                <span>
+                    Start Prediction
+                </span>
+
+                <b>
+                    →
+                </b>
+
+            </a>
+
+
+            <!-- STATS -->
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <strong>
+                        12+
+                    </strong>
+
+                    <span>
+                        Profile Factors
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        ML
+                    </strong>
+
+                    <span>
+                        Powered Model
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Instant
+                    </strong>
+
+                    <span>
+                        Analysis
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+
+            <div class="student-illustration">
+
+                <div class="visual-orbit orbit-one"></div>
+
+                <div class="visual-orbit orbit-two"></div>
+
+
+                <div class="student-card">
+
+                    <div class="student-avatar">
+
+                        <div class="avatar-head"></div>
+
+                        <div class="avatar-body"></div>
+
+                    </div>
+
+
+                    <div class="laptop"></div>
+
+                </div>
+
+
+                <div class="floating-icon icon-one">
+                    ✦
+                </div>
+
+                <div class="floating-icon icon-two">
+                    ◆
+                </div>
+
+                <div class="floating-icon icon-three">
+                    ↗
+                </div>
+
+            </div>
+
+
+
+            <!-- AI CARD -->
+
+            <div class="analysis-card">
+
+
+                <div class="analysis-header">
+
+                    <span>
+                        AI Analysis
+                    </span>
+
+                    <div class="analysis-dot"></div>
+
+                </div>
+
+
+                <div class="mini-score">
+
+                    <div class="mini-ring">
+
+                        <span>
+                            87%
+                        </span>
+
+                    </div>
+
+
+                    <div class="analysis-info">
+
+                        <div>
+                            <span class="check">
+                                ✓
+                            </span>
+
+                            High Potential
+                        </div>
+
+                        <div>
+                            <span class="check">
+                                ✓
+                            </span>
+
+                            Good Skills
+                        </div>
+
+                        <div>
+                            <span class="check">
+                                ✓
+                            </span>
+
+                            Strong Profile
+                        </div>
+
+                        <div>
+                            <span class="check">
+                                ✓
+                            </span>
+
+                            Placement Ready
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <small>
+                    Placement Score
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     PREDICTION SECTION
+========================================= -->
+
+<section
+    class="prediction-section"
+    id="predict"
+>
+
+
+    <div class="section-heading">
+
+        <div class="section-icon">
+            ✦
+        </div>
+
+
+        <div>
+
+            <span>
+                PLACEMENT ANALYSIS
+            </span>
+
+            <h2>
+                Student Profile Analysis
+            </h2>
+
+            <p>
+                Fill in your details to generate
+                an ML-based placement prediction.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FORM -->
+
+    <form id="predictionForm">
+
+
+        <div class="form-grid">
+
+
+            <!-- =================================
+                 ACADEMIC
+            ================================= -->
+
+            <div class="form-card">
+
+
+                <div class="form-card-header">
+
+                    <div class="card-icon">
+                        🎓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Academic Performance
+                        </h3>
+
+                        <p>
+                            Your academic background
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CGPA -->
+
+                <div class="field">
+
+                    <label for="CGPA">
+
+                        CGPA
+
+                        <span>
+                            out of 10
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="CGPA"
+                        placeholder="e.g. 8.5"
+                        min="0"
+                        max="10"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 10TH -->
+
+                <div class="field">
+
+                    <label for="10th_Percentage">
+
+                        10th Percentage
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="10th_Percentage"
+                        placeholder="e.g. 85"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- 12TH -->
+
+                <div class="field">
+
+                    <label for="12th_Percentage">
+
+                        12th Percentage
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="12th_Percentage"
+                        placeholder="e.g. 80"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 SKILLS
+            ================================= -->
+
+            <div class="form-card">
+
+
+                <div class="form-card-header">
+
+                    <div class="card-icon">
+                        ⚙
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Skills & Assessment
+                        </h3>
+
+                        <p>
+                            Evaluate your skill profile
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="two-column">
+
+
+                    <!-- BACKLOGS -->
+
+                    <div class="field">
+
+                        <label for="Backlogs">
+                            Backlogs
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Backlogs"
+                            placeholder="e.g. 0"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ATTENDANCE -->
+
+                    <div class="field">
+
+                        <label for="Attendance">
+
+                            Attendance
+                            <span>%</span>
+
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Attendance"
+                            placeholder="e.g. 85"
+                            min="0"
+                            max="100"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="two-column">
+
+
+                    <!-- CODING -->
+
+                    <div class="field">
+
+                        <label for="Coding_Score">
+
+                            Coding Score
+                            <span>/100</span>
+
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Coding_Score"
+                            placeholder="e.g. 75"
+                            min="0"
+                            max="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- APTITUDE -->
+
+                    <div class="field">
+
+                        <label for="Aptitude_Score">
+
+                            Aptitude Score
+                            <span>/100</span>
+
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Aptitude_Score"
+                            placeholder="e.g. 70"
+                            min="0"
+                            max="100"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COMMUNICATION -->
+
+                <div class="field">
+
+                    <label for="Communication_Score">
+
+                        Communication Score
+                        <span>/100</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Communication_Score"
+                        placeholder="e.g. 80"
+                        min="0"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 CAREER
+            ================================= -->
+
+            <div class="form-card">
+
+
+                <div class="form-card-header">
+
+                    <div class="card-icon">
+                        💼
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Career Profile
+                        </h3>
+
+                        <p>
+                            Experience & achievements
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INTERNSHIP -->
+
+                <div class="field">
+
+                    <label for="Internship">
+                        Internship
+                    </label>
+
+                    <select
+                        id="Internship"
+                        required
+                    >
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="1">
+                            Yes
+                        </option>
+
+                        <option value="0">
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- PROJECTS -->
+
+                <div class="field">
+
+                    <label for="Projects">
+                        Projects
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Projects"
+                        placeholder="e.g. 3"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CERTIFICATIONS -->
+
+                <div class="field">
+
+                    <label for="Certifications">
+                        Certifications
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Certifications"
+                        placeholder="e.g. 2"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- HACKATHON -->
+
+                <div class="field">
+
+                    <label for="Hackathon">
+                        Hackathon
+                    </label>
+
+                    <select
+                        id="Hackathon"
+                        required
+                    >
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="1">
+                            Yes
+                        </option>
+
+                        <option value="0">
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ANALYZE BUTTON -->
+
+        <button
+            type="submit"
+            class="analyze-btn"
+        >
+
+            <span>
+                ✦
+            </span>
+
+            Analyze Profile
+
+            <b>
+                →
+            </b>
+
+        </button>
+
+
+    </form>
+
+
+</section>
+
+
+
+<!-- =========================================
+     RESULT
+========================================= -->
+
+<section class="result-section">
+
+
+    <div class="section-heading">
+
+        <div class="section-icon">
+            ◉
+        </div>
+
+
+        <div>
+
+            <span>
+                MODEL OUTPUT
+            </span>
+
+            <h2>
+                Placement Prediction Result
+            </h2>
+
+            <p>
+                Your placement probability based
+                on AI analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-panel">
+
+
+        <!-- PROBABILITY -->
+
+        <div class="probability-area">
+
+            <div class="result-ring">
+
+                <div class="ring-inner">
+
+                    <strong>
+                        --
+                    </strong>
+
+                    <span>
+                        Placement<br>
+                        Probability
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESULT -->
+
+        <div class="result-content">
+
+            <div class="result-placeholder">
+
+                <div class="placeholder-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Waiting for Analysis
+                </h3>
+
+                <p>
+                    Submit your profile to generate
+                    a placement prediction.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <div class="profile-summary">
+
+
+            <div class="summary-header">
+
+                <span>
+                    ◉
+                </span>
+
+                <h3>
+                    Profile Summary
+                </h3>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    CGPA
+                </span>
+
+                <strong id="summaryCgpa">
+                    --
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    10th Percentage
+                </span>
+
+                <strong id="summary10th">
+                    --
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    12th Percentage
+                </span>
+
+                <strong id="summary12th">
+                    --
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Skills Score
+                </span>
+
+                <strong id="summarySkills">
+                    --
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Overall Profile
+                </span>
+
+                <strong id="summaryOverall">
+                    --
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="result-actions">
+
+        <button
+            type="button"
+            class="secondary-btn"
+            onclick="document.getElementById('predictionForm').reset()"
+        >
+
+            ↻ Analyze Again
+
+        </button>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     ANALYTICS
+========================================= -->
+
+<section
+    class="analytics-section"
+    id="analytics"
+>
+
+
+    <div class="section-title-center">
+
+        <span>
+            INSIGHTS
+        </span>
+
+        <h2>
+            Placement Intelligence
+        </h2>
+
+        <p>
+            Understand the factors that influence
+            placement readiness.
+        </p>
+
+    </div>
+
+
+
+    <div class="analytics-grid">
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                01
+            </div>
+
+            <h3>
+                Academic Performance
+            </h3>
+
+            <p>
+                CGPA, 10th and 12th performance
+                contribute to the student's
+                academic profile.
+            </p>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                02
+            </div>
+
+            <h3>
+                Technical Skills
+            </h3>
+
+            <p>
+                Coding, aptitude and communication
+                scores help evaluate professional
+                readiness.
+            </p>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-icon">
+                03
+            </div>
+
+            <h3>
+                Career Experience
+            </h3>
+
+            <p>
+                Internships, projects, certifications
+                and hackathons strengthen the
+                overall profile.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     ABOUT
+========================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+
+    <div class="about-content">
+
+        <span>
+            ABOUT THE SYSTEM
+        </span>
+
+        <h2>
+            Data-driven insights for
+            smarter placement preparation.
+        </h2>
+
+        <p>
+            PlacementAI uses a Machine Learning
+            classification model to analyze multiple
+            student profile factors and generate
+            an estimated placement probability.
+        </p>
+
+    </div>
+
+
+
+    <div class="about-badge">
+
+        <strong>
+            ML
+        </strong>
+
+        <span>
+            Classification<br>
+            System
+        </span>
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+
+    <div>
+
+        <strong>
+            Placement<span>AI</span>
+        </strong>
+
+        <p>
+            Student Placement Prediction System
+        </p>
+
+    </div>
+
+
+    <span>
+        Built with Python • Flask • Machine Learning
+    </span>
+
+
+</footer>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>
